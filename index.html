@@ -956,7 +956,7 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
   for(var i=0;i<36;i++){var a=i/36*Math.PI*2;floor.push({x:Math.cos(a)*.9,z:Math.sin(a)*.65,c:rk()})}
 
   // ---- randomized intro scenes + colors ----
-  var SCENES=['fight','standoff','pills','reel','warp'],scene=SCENES[Math.floor(Math.random()*SCENES.length)];
+  var SCENES=['fight','standoff','pills','reel','warp','bear','dna','rocket','planet','galaxy','controller'],scene=SCENES[Math.floor(Math.random()*SCENES.length)];
   try{var qs=(location.hash.match(/scene-(\w+)/)||[])[1];if(qs&&SCENES.indexOf(qs)>-1)scene=qs}catch(e){}
   var HUES=[0,200,100,155,-90,65,-120,30];intro.style.filter='hue-rotate('+HUES[Math.floor(Math.random()*HUES.length)]+'deg) saturate(1.25)';
   P.aim=[[.1,1.77,0],[.05,1.55,0],[0,.95,0],[.05,1.5,.17],[.34,1.5,.14],[.64,1.5,.08],[.0,1.5,-.17],[.22,1.33,-.1],[.58,1.47,.02],[.02,.95,.11],[.2,.5,.15],[.3,0,.16],[-.02,.95,-.11],[-.16,.5,-.13],[-.3,0,-.13]];
@@ -993,8 +993,85 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
   // warp tunnel
   var stars=[];if(scene==='warp'){for(var i=0;i<(W<700?600:1100);i++)stars.push({a:Math.random()*6.283,r:.5+Math.random()*1.4,z:.3+Math.random()*10,pz:0,col:Math.random()<.15?HI:GREEN})}
 
+
+  // ---- more intro scenes (all made of code) ----
+  function ell(cx,cy,cz,rx,ry,rz,n,col,out){for(var i=0;i<n;i++){var u=Math.random()*2-1,a=Math.random()*6.283,r=Math.sqrt(1-u*u);out.push({p:[cx+rx*r*Math.cos(a),cy+ry*u,cz+rz*r*Math.sin(a)],col:col||GREEN})}return out}
+  function cyl(x0,y0,z0,x1,y1,z1,rad,n,col,out){for(var i=0;i<n;i++){var s=Math.random(),a=Math.random()*6.283;out.push({p:[x0+(x1-x0)*s+Math.cos(a)*rad,y0+(y1-y0)*s,z0+(z1-z0)*s+Math.sin(a)*rad],col:col||GREEN})}return out}
+  function drawPts(pts,tf,proj,S,fade,mul){for(var i=0;i<pts.length;i++){var q=pts[i],w=tf(q.p,q),p=proj(w[0],w[1],w[2],q.k||.5);if(!p)continue;
+      var a=(.35+.65*Math.max(0,Math.min(1,(1.2-p.z)/2.4)))*fade*(q.al==null?1:q.al);if(a<.03)continue;glyphC(p,q.ch||(Math.random()<.06?(q.c=rk()):(q.c||(q.c=rk()))),q.col,a,S*(mul||.04)*p.sc)}}
+  var X2={},manShattered=false,exhaust=[];
+  // BEAR: charges in, man panics, bear rears and swipes, man shatters into code (no gore)
+  var bearBody=[],bearLegs=[];
+  if(scene==='bear'){ell(0,.78,0,.78,.44,.4,320,GREEN,bearBody);ell(.36,1.1,0,.32,.22,.32,80,GREEN,bearBody);ell(.82,.98,0,.27,.25,.25,110,GREEN,bearBody);ell(1.06,.92,0,.13,.1,.11,34,DIM,bearBody);
+    [[.74,1.22,.13],[.74,1.22,-.13]].forEach(function(e){ell(e[0],e[1],e[2],.07,.07,.05,14,GREEN,bearBody)});
+    [[.92,1.02,.1],[.92,1.02,-.1]].forEach(function(e){bearBody.push({p:e,col:HI,ch:'●'})});
+    [[.45,.2],[.45,-.2],[-.45,.2],[-.45,-.2]].forEach(function(L,i){var pts=cyl(0,0,0,0,-.62,0,.12,60,GREEN,[]);for(var k=0;k<4;k++)pts.push({p:[.1+k*.02,-.64,(k-1.5)*.04],col:HI,ch:'>'});bearLegs.push({x:L[0],z:L[1],ph:i%2?Math.PI:0,front:L[0]>0,pts:pts})})}
+  P.scared=[[-.18,1.7,0],[-.12,1.5,0],[0,.9,0],[-.1,1.45,.18],[.05,1.5,.26],[.14,1.78,.16],[-.14,1.45,-.18],[.0,1.48,-.26],[.1,1.76,-.14],[.02,.9,.11],[.25,.48,.14],[.22,0,.15],[-.02,.9,-.11],[-.2,.48,-.13],[-.36,0,-.13]];
+  X2.bear=function(t,proj,S,dimF,boom,fade){
+    var bx=2.9-2.25*ease(Math.min(1,t/2400)),gait=t/150,rear=t>2300?Math.min(.75,(t-2300)/450*.75):0,swipe=t>2650?Math.min(1,(t-2650)/200):0;
+    if(t>2900)rear=Math.max(0,.75-(t-2900)/600*.75);
+    var cr=Math.cos(rear),sr=Math.sin(rear),hx=-.45;
+    function rearTf(x,y){var dx=x-.45;return [.45+dx*cr+y*sr,-dx*sr+y*cr]}
+    function tfB(p){var x=-p[0],y=p[1],v=rearTf(x+0,y);return [bx+v[0],v[1],p[2]]}
+    drawPts(bearBody,tfB,proj,S,fade,.042);
+    bearLegs.forEach(function(L){var sw=rear>0&&L.front?(-1.1-swipe*1.2):Math.sin(gait+L.ph)*.5*(t<2300?1:.2);var cs=Math.cos(sw),ss=Math.sin(sw);
+      drawPts(L.pts,function(p){var lx=p[0]*cs-p[1]*ss,ly=p[0]*ss+p[1]*cs;return tfB([L.x+lx,.62+ly,L.z+p[2]])},proj,S,fade,.042)});
+    // the man
+    var mx0=-1.25;
+    if(!manShattered){var f=ease(Math.max(0,Math.min(1,(t-700)/600))),shake=t>900?Math.sin(t/25)*.015:0,J=[];
+      for(var j=0;j<15;j++){var A=P.stance[j],B=P.scared[j];J.push([mx0+A[0]+(B[0]-A[0])*f+shake,A[1]+(B[1]-A[1])*f,A[2]+(B[2]-A[2])*f])}
+      var fig=figs[0],pts=[];
+      for(var i=0;i<fig.length;i++){var q=fig[i],x,y,z;if(Math.random()<.04)q.c=rk();
+        if(q.b<0){x=J[0][0]+q.ox;y=J[0][1]+q.oy;z=J[0][2]+q.oz}else{var A=J[BONES[q.b][0]],B=J[BONES[q.b][1]];x=A[0]+(B[0]-A[0])*q.u+q.ox;y=A[1]+(B[1]-A[1])*q.u+q.oy;z=A[2]+(B[2]-A[2])*q.u+q.oz}
+        if(t>=2800){parts.push({x:x,y:y,z:z,vx:-(.6+Math.random()*2.6),vy:(Math.random()-.2)*2.4,vz:(Math.random()-.5)*2,life:1.4,c:q.c});continue}
+        var p=proj(x,y,z,q.k);if(!p)continue;glyphC(p,q.c,q.b<0||q.k>.85?HI:GREEN,(.4+.6*Math.max(0,Math.min(1,(1.2-p.z)/2.4)))*fade,S*.05*p.sc)}
+      if(t>=2800)manShattered=true;
+      if(t>1000&&t<2800&&Math.floor(t/300)%2){var hp=proj(mx0-.1,2.05,0,.5);if(hp){ctx.font='700 '+(S*.09).toFixed(0)+'px "Space Mono",monospace';ctx.fillStyle='rgba(215,255,224,'+fade.toFixed(2)+')';ctx.fillText('!!',hp.X,hp.Y)}}}
+    if(t>2780&&t<2950){ctx.fillStyle='rgba(215,255,224,'+(.35*(1-(t-2780)/170)).toFixed(2)+')';ctx.fillRect(0,0,W,H)}};
+  // DNA helix
+  X2.dna=function(t,proj,S,dimF,boom,fade){var rot=t/900,B='ATGC';
+    for(var i=0;i<56;i++){var y=.05+i*.042,a=i*.32+rot;
+      var p1=[Math.cos(a)*.48,y,Math.sin(a)*.48],p2=[Math.cos(a+Math.PI)*.48,y,Math.sin(a+Math.PI)*.48];
+      [p1,p2].forEach(function(pp,s){var p=proj(pp[0],pp[1],pp[2],.5);if(p)glyphC(p,s?'1':'0',s?HI:GREEN,(.4+.6*Math.max(0,Math.min(1,(1.2-p.z)/2.4)))*fade,S*.05*p.sc)});
+      if(i%2===0)for(var k=1;k<6;k++){var u=k/6,p=proj(p1[0]+(p2[0]-p1[0])*u,y,p1[2]+(p2[2]-p1[2])*u,.5);if(p)glyphC(p,B[(i/2+k)%4],DIM,.6*fade,S*.034*p.sc)}}};
+  // Rocket launch
+  var rocket=[];if(scene==='rocket'){cyl(0,.3,0,0,1.25,0,.2,220,GREEN,rocket);for(var i=0;i<70;i++){var s=Math.random(),a=Math.random()*6.283,r=.2*(1-s);rocket.push({p:[Math.cos(a)*r,1.25+s*.38,Math.sin(a)*r],col:HI})}
+    [0,2.094,4.188].forEach(function(a){for(var i=0;i<26;i++){var s=Math.random(),h=Math.random();rocket.push({p:[Math.cos(a)*(.2+s*.2),.3+h*(.35-s*.3),Math.sin(a)*(.2+s*.2)],col:DIM})}});
+    for(var i=0;i<20;i++){var a=i/20*6.283;rocket.push({p:[Math.cos(a)*.13,.95,Math.sin(a)*.13],col:HI,ch:'o'})}}
+  X2.rocket=function(t,proj,S,dimF,boom,fade){var lift=t>1300?Math.pow((t-1300)/1000,2.1)*.55:0,shake=t>500&&t<2600?(Math.random()-.5)*.02:0,spin=t/1400;
+    for(var i=0;i<40;i++){var a=i/40*6.283,p=proj(Math.cos(a)*.7,0,Math.sin(a)*.7,.5);if(p)glyph(p,DIM,.35*fade,S*.035*p.sc)}
+    drawPts(rocket,function(q){var c=Math.cos(spin),s=Math.sin(spin);return [q[0]*c-q[2]*s+shake,q[1]+lift,q[0]*s+q[2]*c]},proj,S,fade,.04);
+    if(t>500){var n=t>1300?10:4;for(var k=0;k<n;k++)exhaust.push({x:(Math.random()-.5)*.12,y:.3+lift,z:(Math.random()-.5)*.12,vx:(Math.random()-.5)*.6,vy:-(1+Math.random()*1.4),vz:(Math.random()-.5)*.6,life:1})}
+    for(var i=exhaust.length-1;i>=0;i--){var e=exhaust[i];e.x+=e.vx*.016;e.y+=e.vy*.016;e.z+=e.vz*.016;if(e.y<0){e.y=0;e.vy=0;e.vx*=1.06;e.vz*=1.06}e.life-=.018;if(e.life<=0){exhaust.splice(i,1);continue}
+      var p=proj(e.x,e.y,e.z,.5);if(p)glyph(p,e.life>.75?HI:GREEN,e.life*fade,S*.04*p.sc)}};
+  // Planet with orbit rings
+  var planet=[];if(scene==='planet'){for(var i=0;i<1100;i++){var u=Math.random()*2-1,a=Math.random()*6.283,r=Math.sqrt(1-u*u),x=r*Math.cos(a),z=r*Math.sin(a),land=Math.sin(x*4.1+u*2.3)+Math.sin(z*3.7-u*1.7)+Math.sin(u*5+x*2)>.8;
+      if(!land&&Math.random()<.55)continue;planet.push({p:[x*.85,u*.85,z*.85],col:land?GREEN:DIM,al:land?1:.45})}}
+  X2.planet=function(t,proj,S,dimF,boom,fade){var rot=t/2200,tilt=.35;
+    drawPts(planet,function(p){var c=Math.cos(rot),s=Math.sin(rot),x=p[0]*c-p[2]*s,z=p[0]*s+p[2]*c,y=p[1],ct=Math.cos(tilt),st=Math.sin(tilt);return [x*ct-y*st,1.05+x*st+y*ct,z]},proj,S,fade,.036);
+    [[1.25,.4,1],[1.5,-.5,-.7]].forEach(function(o,ri){var tl=o[1];for(var k=0;k<70;k++){var a=k/70*6.283,x=Math.cos(a)*o[0],z=Math.sin(a)*o[0],y=z*Math.sin(tl);z*=Math.cos(tl);var p=proj(x,1.05+y,z,.5);if(p)glyph(p,DIM,.35*fade,S*.03*p.sc)}
+      var a=t/1000*o[2]+ri*2,x=Math.cos(a)*o[0],z=Math.sin(a)*o[0],y=z*Math.sin(tl);z*=Math.cos(tl);
+      for(var k=0;k<9;k++){var p=proj(x+(k%3-1)*.05,1.05+y+(Math.floor(k/3)-1)*.03,z,.5);if(p)glyphC(p,k===4?'■':'=',HI,fade,S*.04*p.sc)}})};
+  // Spiral galaxy
+  var gal=[];if(scene==='galaxy'){for(var i=0;i<1300;i++){var arm=i%3,d=Math.pow(Math.random(),.6)*1.6,a=arm*2.094+d*2.6+(Math.random()-.5)*.5;gal.push({p:[Math.cos(a)*d,(Math.random()-.5)*.08*(1.8-d),Math.sin(a)*d],col:d<.35?HI:(Math.random()<.2?DIM:GREEN),al:Math.max(.25,1-d*.45)})}}
+  X2.galaxy=function(t,proj,S,dimF,boom,fade){var rot=-t/2600,tl=.55;
+    drawPts(gal,function(p){var c=Math.cos(rot),s=Math.sin(rot),x=p[0]*c-p[2]*s,z=p[0]*s+p[2]*c,y=p[1];return [x,1.0+y*Math.cos(tl)-z*Math.sin(tl),y*Math.sin(tl)+z*Math.cos(tl)]},proj,S,fade,.032);
+    var cp=proj(0,1,0,.5);if(cp){var cg=ctx.createRadialGradient(cp.X,cp.Y,0,cp.X,cp.Y,S*.35);cg.addColorStop(0,'rgba(215,255,224,'+(.35*fade).toFixed(2)+')');cg.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=cg;ctx.fillRect(cp.X-S*.4,cp.Y-S*.4,S*.8,S*.8)}};
+  // Game controller doing a combo
+  var gpad=[],padBtns=[];if(scene==='controller'){ell(0,0,0,.62,.24,.16,260,GREEN,gpad);ell(-.5,-.24,.02,.2,.3,.15,110,GREEN,gpad);ell(.5,-.24,.02,.2,.3,.15,110,GREEN,gpad);
+    [[-.38,.04,'▲'],[-.38,-.1,'▼'],[-.46,-.03,'◀'],[-.3,-.03,'▶']].forEach(function(b){padBtns.push({p:[b[0],b[1],.17],ch:b[2]})});
+    [[.4,.08,'Y'],[.4,-.12,'A'],[.3,-.02,'X'],[.5,-.02,'B']].forEach(function(b){padBtns.push({p:[b[0],b[1],.17],ch:b[2]})});
+    [[-.16,-.16],[.16,-.16]].forEach(function(s){for(var k=0;k<12;k++){var a=k/12*6.283;gpad.push({p:[s[0]+Math.cos(a)*.07,s[1]+Math.sin(a)*.07,.17],col:HI,ch:'o'})}})}
+  X2.controller=function(t,proj,S,dimF,boom,fade){var ry=Math.sin(t/1300)*.6,rx=-.35+Math.sin(t/1700)*.15,bob=Math.sin(t/600)*.06,sc=1.25;
+    function tf(p){var v=rot(p,rx,ry,Math.sin(t/2000)*.12);return [v[0]*sc,1.05+bob+v[1]*sc,v[2]*sc]}
+    drawPts(gpad,tf,proj,S,fade,.04);
+    var combo=[0,0,1,1,2,3,2,3,7,5],hit=combo[Math.floor(t/260)%combo.length];
+    padBtns.forEach(function(b,i){var w=tf(b.p),p=proj(w[0],w[1],w[2],.5);if(!p)return;var on=i===hit;glyphC(p,b.ch,on?HI:GREEN,(on?1:.7)*fade,S*(on?.075:.05)*p.sc)});
+    var lbl=['▲','▲','▼','▼','◀','▶','◀','▶','B','A'];var hp=proj(0,1.75,0,.5);if(hp){ctx.font='700 '+(S*.06).toFixed(0)+'px "Space Mono",monospace';ctx.fillStyle='rgba(215,255,224,'+(.8*fade).toFixed(2)+')';ctx.fillText(lbl.slice(0,(Math.floor(t/260)%combo.length)+1).join(' '),hp.X,hp.Y)}};
+
   function drawScene(t,proj,S,dimF,boom,toWorld2){
     var fade=(1-Math.min(1,boom*.9))*dimF;
+    if(X2[scene]){X2[scene](t,proj,S,dimF,boom,fade);return}
     if(scene==='standoff'){
       var f=Math.min(1,t/800),fe=ease(f);
       for(var fi=0;fi<2;fi++){var J=[];for(var j=0;j<15;j++){var A=P.stance[j],B=P.aim[j];J.push(toWorld2(fi,[A[0]+(B[0]-A[0])*fe,A[1]+(B[1]-A[1])*fe+(t>900&&t<1100?.01:0),A[2]+(B[2]-A[2])*fe]))}
@@ -1120,7 +1197,7 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
     if(!done||t<6000)raf=requestAnimationFrame(frame);
   }
   function finish(){if(done)return;done=true;intro.classList.add('out');setTimeout(function(){root.classList.remove('intro-on')},350);setTimeout(function(){cancelAnimationFrame(raf)},1100)}
-  window.replayIntro=function(){cancelAnimationFrame(raf);T=0;fired=false;collided=false;rings.length=0;lastRing=0;last=null;done=false;named=false;burstDone={};parts.length=0;name.classList.remove('on');name.innerHTML=target;intro.classList.remove('out');root.classList.add('intro-on');window.scrollTo(0,0);raf=requestAnimationFrame(frame)};
+  window.replayIntro=function(){cancelAnimationFrame(raf);T=0;fired=false;collided=false;rings.length=0;lastRing=0;manShattered=false;exhaust.length=0;last=null;done=false;named=false;burstDone={};parts.length=0;name.classList.remove('on');name.innerHTML=target;intro.classList.remove('out');root.classList.add('intro-on');window.scrollTo(0,0);raf=requestAnimationFrame(frame)};
   document.getElementById('iskip').addEventListener('click',function(){finish()});
   intro.addEventListener('click',function(e){if(e.target===cv)finish()});
   window.addEventListener('keydown',function k(e){if(e.key==='Escape'||e.key===' '){finish();window.removeEventListener('keydown',k)}});
