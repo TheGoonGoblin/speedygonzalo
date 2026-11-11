@@ -278,8 +278,9 @@ section h2{font-size:clamp(38px,5vw,76px)}
 .tools{margin:40px 0 0;display:flex;gap:14px;flex-wrap:wrap;align-items:center;color:var(--dim);font-family:"Space Mono",monospace;font-size:13px;letter-spacing:1px;text-transform:uppercase}
 .tool{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;color:var(--text);text-transform:none;letter-spacing:0;font-family:Manrope,sans-serif;font-weight:600;font-size:15px}
 .tool b{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Manrope,sans-serif;font-size:14px;font-weight:800}
-.tool.pr b{background:#00005B;color:#9999FF;border:1.5px solid #9999FF}
-.tool.ae b{background:#00005B;color:#D291FF;border:1.5px solid #D291FF}
+.tool b{background:rgba(var(--arc),.08);color:var(--accent);border:1.5px solid var(--accent)}
+.plugins{margin:18px 0 0;font-size:16px;line-height:1.6;color:var(--muted)}
+.plugins .mono{color:var(--accent);font-size:13px;letter-spacing:1px;margin-right:8px}
 
 /* steps */
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -724,8 +725,8 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
           <h2>The guy behind<br>the timeline.</h2>
         </div>
         <div class="reveal">
-          <p class="bio">I'm Caleb, a video editor who's been sharpening my skills and is now looking to start working with YouTubers. I edit in Premiere Pro and After Effects, and my thing is bringing <span class="hl">extra energy</span> to your videos: <span class="hl">clean cuts, good pacing</span> and edits that <span class="hl">keep viewers watching.</span></p>
-          <div class="chips"><span>Premiere Pro</span><span>After Effects</span><span>Meme edits</span><span>Pacing</span><span>Captions</span><span>Sound design</span></div>
+          <p class="bio">I'm Caleb, a video editor who's been sharpening my skills and is now looking to start working with YouTubers. I edit in Premiere Pro and After Effects (plus Photoshop, Logic Pro and Canva), and my thing is bringing <span class="hl">extra energy</span> to your videos: <span class="hl">clean cuts, good pacing</span> and edits that <span class="hl">keep viewers watching.</span></p>
+          <div class="chips"><span>Premiere Pro</span><span>After Effects</span><span>Photoshop</span><span>Logic Pro</span><span>Canva</span><span>Meme edits</span><span>Pacing</span><span>Captions</span><span>Sound design</span></div>
         </div>
       </div>
     </div>
@@ -757,9 +758,13 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
         <div class="sk"><div class="top"><span class="n">09</span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5zM15.5 8.5a5 5 0 010 7M19 5a10 10 0 010 14"/></svg></div><h3>Sound effects: whooshes, dings, impacts</h3></div>
       </div>
       <div class="tools reveal">Tools
-        <span class="tool pr"><b>Pr</b>Premiere Pro</span>
-        <span class="tool ae"><b>Ae</b>After Effects</span>
+        <span class="tool"><b>Pr</b>Premiere Pro</span>
+        <span class="tool"><b>Ae</b>After Effects</span>
+        <span class="tool"><b>Ps</b>Photoshop</span>
+        <span class="tool"><b>Lp</b>Logic Pro</span>
+        <span class="tool"><b>Cv</b>Canva</span>
       </div>
+      <p class="plugins reveal"><span class="mono">+ plugins</span> I run plugins in Premiere Pro, After Effects and Logic Pro for effects, transitions, motion and sound.</p>
     </div>
   </section>
 
