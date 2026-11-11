@@ -521,6 +521,15 @@ html[data-theme] .tvwall-sec{background:var(--bg)}
 canvas.lips-sky{position:fixed;inset:0;width:100vw;height:100vh;z-index:35;pointer-events:none}
 html[data-theme] canvas.lips-sky{filter:none}
 canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;pointer-events:none;opacity:.7}
+
+/* phone: TV grid instead of the stacked wall */
+.wall.wall-m{width:100%;max-width:470px;display:grid;grid-template-columns:1fr 1fr;gap:40px 14px;justify-items:center;align-items:end;padding:0 14px 20px;box-sizing:border-box}
+.wall.wall-m .wall-col{display:contents}
+.wall.wall-m .vcr,.wall.wall-m .tv-ant{display:none}
+.wall.wall-m .vtv{grid-column:1/-1}
+.wall.wall-m .tv{margin-top:0}
+.wall.wall-m .vtv:hover,.wall.wall-m .vtv:focus-within{transform:none}
+.wall.wall-m .ftv .sticker{font-size:5em}
 </style>
 <script>(function(){try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')}catch(e){}})();</script>
 </head>
@@ -1482,7 +1491,14 @@ document.querySelectorAll('.yt-face').forEach(function(b){b.addEventListener('cl
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // ---------- scale wall to fit ----------
   var wall=document.getElementById('wall'),stage=document.getElementById('wallStage');
-  function fit(){if(!wall)return;var avail=Math.min(innerWidth-16,1340),sc=Math.min(1,avail/1300);wall.style.transform='scale('+sc+')';wall.style.marginBottom=(-(1-sc)*wall.offsetHeight)+'px'}
+  var tvs=wall?[].slice.call(wall.querySelectorAll('.tv')):[];tvs.forEach(function(t){t.dataset.w=t.style.getPropertyValue('--w');t.dataset.r=t.style.getPropertyValue('--r')});
+  function fit(){if(!wall)return;
+    if(innerWidth<760){wall.classList.add('wall-m');wall.style.transform='none';wall.style.marginBottom='0';
+      var full=Math.min(innerWidth-28,440),half=Math.floor((full-14)/2),ord=0,fil=[].slice.call(wall.querySelectorAll('.ftv')),vids=[].slice.call(wall.querySelectorAll('.vtv')).sort(function(a,b){return a.getAttribute('data-ch')-b.getAttribute('data-ch')});
+      vids.forEach(function(v){v.style.order=ord++;v.style.setProperty('--w',full);v.style.setProperty('--r','0deg');fil.splice(0,2).forEach(function(f){f.style.order=ord++;f.style.setProperty('--w',half);f.style.setProperty('--r','0deg')})});
+      fil.forEach(function(f){f.style.order=ord++;f.style.setProperty('--w',half);f.style.setProperty('--r','0deg')});return}
+    if(wall.classList.contains('wall-m')){wall.classList.remove('wall-m');tvs.forEach(function(t){t.style.order='';t.style.setProperty('--w',t.dataset.w);t.style.setProperty('--r',t.dataset.r)})}
+    var avail=Math.min(innerWidth-16,1340),sc=Math.min(1,avail/1300);wall.style.transform='scale('+sc+')';wall.style.marginBottom=(-(1-sc)*wall.offsetHeight)+'px'}
   window.addEventListener('resize',fit);fit();setTimeout(fit,400);
 
   // ---------- filler TV patterns ----------
