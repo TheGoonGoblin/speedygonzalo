@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SpeedyGonzalo — The Editor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=VT323&family=Permanent+Marker&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#020403;--bg2:#050A06;--card:#07100A;--line:#123A1B;--text:#E4FFE9;--muted:#9FC9A8;--dim:#5E8F69;--accent:#00FF41;--hot:#00C434;--cool:#B6FFC7}
+:root{--arc:0,255,65;--bg:#020403;--bg2:#050A06;--card:#07100A;--line:#123A1B;--text:#E4FFE9;--muted:#9FC9A8;--dim:#5E8F69;--accent:#00FF41;--hot:#00C434;--cool:#B6FFC7}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -15,13 +15,13 @@ a{color:var(--accent)}
 button{font-family:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
 h1,h2,.display{font-family:Unbounded,sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1;margin:0}
-.swap,.contact h2 em,.panel h2 em,.logo span{text-shadow:0 0 24px rgba(0,255,65,.45)}
+.swap,.contact h2 em,.panel h2 em,.logo span{text-shadow:0 0 24px rgba(var(--arc),.45)}
 .mono{font-family:"Space Mono",monospace}
 .eyebrow{font-family:"Space Mono",monospace;font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:0 0 20px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:28px;height:1px;background:var(--accent)}
 
 /* boinks */
-.boink{position:fixed;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:12px;overflow:hidden;border:2px solid var(--accent);box-shadow:0 0 18px rgba(0,255,65,.55),0 10px 30px rgba(0,0,0,.6);background:#000;pointer-events:none;z-index:260;will-change:transform,opacity}
+.boink{position:fixed;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:12px;overflow:hidden;border:2px solid var(--accent);box-shadow:0 0 18px rgba(var(--arc),.55),0 10px 30px rgba(0,0,0,.6);background:#000;pointer-events:none;z-index:260;will-change:transform,opacity}
 .boink img,.boink video{width:100%;height:100%;object-fit:cover;display:block}
 @media (max-width:600px){.boink{width:64px;height:64px;margin:-32px 0 0 -32px}}
 
@@ -29,7 +29,7 @@ h1,h2,.display{font-family:Unbounded,sans-serif;font-weight:800;letter-spacing:-
 .mtx{position:fixed;inset:0;z-index:240;pointer-events:none;display:none}
 .mtx.on{display:block;pointer-events:auto}
 .mtx canvas{width:100%;height:100%;display:block}
-.mtx-label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"Space Mono",monospace;font-weight:700;font-size:clamp(18px,3vw,30px);letter-spacing:4px;text-transform:uppercase;color:var(--cool);text-shadow:0 0 20px rgba(0,255,65,.9);background:rgba(2,4,3,.85);padding:12px 22px;border:1px solid var(--accent);border-radius:8px;opacity:0;transition:opacity .15s;white-space:nowrap}
+.mtx-label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"Space Mono",monospace;font-weight:700;font-size:clamp(18px,3vw,30px);letter-spacing:4px;text-transform:uppercase;color:var(--cool);text-shadow:0 0 20px rgba(var(--arc),.9);background:rgba(2,4,3,.85);padding:12px 22px;border:1px solid var(--accent);border-radius:8px;opacity:0;transition:opacity .15s;white-space:nowrap}
 .mtx-label.on{opacity:1}
 
 /* contact page */
@@ -44,7 +44,7 @@ body.on-contact > header,body.on-contact > main,body.on-contact > footer,body.on
 .c-back:hover{border-color:var(--accent);color:var(--accent)}
 .c-node{font-size:12px;letter-spacing:2px;color:var(--dim);display:flex;align-items:center;gap:10px}
 .c-node .rec{display:inline-block;width:8px;height:8px;border-radius:50%;background:#FF3B3B;animation:blink 1s infinite}
-.c-term{position:absolute;left:50%;top:84px;transform:translateX(-50%);width:min(760px,calc(100% - 40px));z-index:3;font-size:clamp(12px,1.5vw,15px);line-height:1.75;color:var(--accent);text-shadow:0 0 10px rgba(0,255,65,.5);min-height:8em;pointer-events:none}
+.c-term{position:absolute;left:50%;top:84px;transform:translateX(-50%);width:min(760px,calc(100% - 40px));z-index:3;font-size:clamp(12px,1.5vw,15px);line-height:1.75;color:var(--accent);text-shadow:0 0 10px rgba(var(--arc),.5);min-height:8em;pointer-events:none}
 .c-term .ln{display:block;white-space:pre-wrap}
 .c-term .ln.red{color:#FF5A4F;text-shadow:0 0 10px rgba(255,59,48,.6)}
 .c-term .ln.blue{color:#6EA8FF;text-shadow:0 0 10px rgba(47,123,255,.6)}
@@ -62,8 +62,8 @@ body.on-contact > header,body.on-contact > main,body.on-contact > footer,body.on
 .c-pill[disabled]{pointer-events:none}
 .c-reveal{position:relative;z-index:3;max-width:1100px;margin:0 auto;padding:120px 24px 80px;display:none;text-align:center}
 .c-reveal.on{display:block}
-.c-kicker{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin:0 0 16px;text-shadow:0 0 12px rgba(0,255,65,.6)}
-.c-title{font-size:clamp(46px,8vw,110px);color:var(--cool);text-shadow:0 0 30px rgba(0,255,65,.55);min-height:1em}
+.c-kicker{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin:0 0 16px;text-shadow:0 0 12px rgba(var(--arc),.6)}
+.c-title{font-size:clamp(46px,8vw,110px);color:var(--cool);text-shadow:0 0 30px rgba(var(--arc),.55);min-height:1em}
 .c-sub{max-width:560px;margin:22px auto 0;font-size:18px;line-height:1.6;color:var(--muted);opacity:0;transition:opacity .6s .3s}
 .c-reveal.on .c-sub{opacity:1}
 .c-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:52px;text-align:left}
@@ -71,9 +71,9 @@ body.on-contact > header,body.on-contact > main,body.on-contact > footer,body.on
 .c-reveal.on .c-card{opacity:1;transform:none;clip-path:inset(0 0 0 0)}
 .c-card::before{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:translateX(-100%);animation:scanx 3s linear infinite;animation-delay:calc(var(--d)*.4s)}
 @keyframes scanx{to{transform:translateX(100%)}}
-.c-card:hover{border-color:var(--accent);box-shadow:0 0 30px rgba(0,255,65,.18)}
+.c-card:hover{border-color:var(--accent);box-shadow:0 0 30px rgba(var(--arc),.18)}
 .c-card-top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.c-ic{width:44px;height:44px;border-radius:12px;border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(0,255,65,.3)}
+.c-ic{width:44px;height:44px;border-radius:12px;border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(var(--arc),.3)}
 .c-ic svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .c-lab{font-size:13px;letter-spacing:3px;color:var(--accent)}
 .c-bin{margin-left:auto;font-size:12px;color:var(--dim)}
@@ -98,7 +98,7 @@ body.on-contact > header,body.on-contact > main,body.on-contact > footer,body.on
 #irain{opacity:.45}
 .intro::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);pointer-events:none}
 .intro-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;z-index:2}
-.intro-name{font-family:Unbounded,sans-serif;font-weight:800;font-size:clamp(34px,7vw,104px);letter-spacing:-.02em;color:#E4FFE9;white-space:nowrap;opacity:0;transition:opacity .3s;text-shadow:0 0 30px rgba(0,255,65,.7)}
+.intro-name{font-family:Unbounded,sans-serif;font-weight:800;font-size:clamp(34px,7vw,104px);letter-spacing:-.02em;color:#E4FFE9;white-space:nowrap;opacity:0;transition:opacity .3s;text-shadow:0 0 30px rgba(var(--arc),.7)}
 .intro-name.on{opacity:1}
 .intro-name .r{color:var(--accent)}
 .intro-name{color:var(--cool)}
@@ -123,8 +123,8 @@ body.on-contact > header,body.on-contact > main,body.on-contact > footer,body.on
 /* cursor */
 .cur,.cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:250;border-radius:50%;transform:translate(-50%,-50%);display:none}
 .cur{width:8px;height:8px;background:var(--accent)}
-.cur-ring{width:40px;height:40px;border:1.5px solid rgba(0,255,65,.6);transition:width .25s,height .25s,background .25s,border-color .25s;display:none;align-items:center;justify-content:center;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;color:#020403;letter-spacing:1px}
-.cur-ring.hover{width:64px;height:64px;background:rgba(0,255,65,.15)}
+.cur-ring{width:40px;height:40px;border:1.5px solid rgba(var(--arc),.6);transition:width .25s,height .25s,background .25s,border-color .25s;display:none;align-items:center;justify-content:center;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;color:#020403;letter-spacing:1px}
+.cur-ring.hover{width:64px;height:64px;background:rgba(var(--arc),.15)}
 .cur-ring.play{width:90px;height:90px;background:var(--accent);border-color:var(--accent)}
 @media (hover:hover) and (pointer:fine){.cur{display:block}.cur-ring{display:flex}body,a,button{cursor:none}}
 
@@ -140,7 +140,7 @@ header.scrolled{background:rgba(2,4,3,.75);backdrop-filter:blur(14px);border-col
 @keyframes blink{50%{opacity:.2}}
 .status{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#B9E6C2;border:1px solid var(--line);padding:8px 14px;border-radius:999px;margin-left:auto}
 .status i{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,255,65,.6)}70%{box-shadow:0 0 0 9px rgba(0,255,65,0)}100%{box-shadow:0 0 0 0 rgba(0,255,65,0)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(var(--arc),.6)}70%{box-shadow:0 0 0 9px rgba(var(--arc),0)}100%{box-shadow:0 0 0 0 rgba(var(--arc),0)}}
 .links{display:flex;gap:26px;align-items:center}
 .links a{color:#B9E6C2;text-decoration:none;font-weight:500;padding:12px 0;position:relative}
 .links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:6px;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .35s}
@@ -224,7 +224,7 @@ section h2{font-size:clamp(38px,5vw,76px)}
 /* work */
 .feature{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:center}
 .vid-wrap{perspective:1200px}
-.vid{border-radius:20px;overflow:hidden;background:#000;aspect-ratio:1218/720;position:relative;transform-style:preserve-3d;transition:transform .2s ease-out,box-shadow .3s;box-shadow:0 30px 80px -30px rgba(0,255,65,.25)}
+.vid{border-radius:20px;overflow:hidden;background:#000;aspect-ratio:1218/720;position:relative;transform-style:preserve-3d;transition:transform .2s ease-out,box-shadow .3s;box-shadow:0 30px 80px -30px rgba(var(--arc),.25)}
 .vid::before{content:"";position:absolute;inset:-2px;border-radius:22px;padding:2px;background:conic-gradient(from var(--ang,0deg),var(--accent),var(--hot),var(--cool),var(--accent));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 6s linear infinite;z-index:2;pointer-events:none}
 @property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
 @keyframes spin{to{--ang:360deg}}
@@ -250,7 +250,7 @@ section h2{font-size:clamp(38px,5vw,76px)}
 .yt-face{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;margin:0;background:#000;display:block;overflow:hidden;border-radius:20px}
 .yt-face img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.8) saturate(.9);transition:transform .6s,filter .4s}
 .yt-feature:hover .yt-face img{transform:scale(1.05);filter:none}
-.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 34px rgba(0,255,65,.65);transition:transform .3s;z-index:3}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 34px rgba(var(--arc),.65);transition:transform .3s;z-index:3}
 .yt-play svg{width:32px;height:32px;fill:#020403;margin-left:4px}
 .yt-feature:hover .yt-play{transform:scale(1.12)}
 .yt-vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;z-index:1;border-radius:20px}
@@ -260,7 +260,7 @@ section h2{font-size:clamp(38px,5vw,76px)}
 /* skills */
 .styles{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;margin-bottom:24px}
 .panel-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px;position:relative;overflow:hidden}
-.main-style{background:radial-gradient(circle at 100% 0,rgba(0,255,65,.18),transparent 60%),var(--card);border-color:rgba(0,255,65,.5)}
+.main-style{background:radial-gradient(circle at 100% 0,rgba(var(--arc),.18),transparent 60%),var(--card);border-color:rgba(var(--arc),.5)}
 .main-style h3{margin:0 0 12px;font-size:30px;line-height:1.15}
 .main-style p:not(.meta){margin:0;font-size:17px;line-height:1.6;color:var(--muted)}
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -365,6 +365,140 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   .track .clip{font-size:0}
   .panel{padding:76px 24px 32px}
 }
+
+/* ================= CRT TV WALL ================= */
+.tvwall-sec{padding-bottom:80px;overflow:hidden}
+.wall-stage{position:relative;margin:10px auto 0;padding:40px 0 0}
+.wall-glow{position:absolute;left:50%;top:45%;width:1100px;height:700px;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center,rgba(var(--arc),.16),transparent 65%);filter:blur(30px);pointer-events:none}
+.wall{position:relative;width:1180px;margin:0 auto;transform-origin:top center;display:flex;flex-direction:column;align-items:center}
+.wall-row{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin-bottom:4px}
+.wall-floor{width:min(1300px,96vw);height:120px;margin:-6px auto 0;background:radial-gradient(ellipse at 50% 0,rgba(var(--arc),.22),transparent 70%);filter:blur(10px);opacity:.8;pointer-events:none}
+
+.tv{--u:calc(var(--w) * .01px);position:relative;width:calc(var(--w) * 1px);font-size:var(--u);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s;flex:none}
+.tv-body{position:relative;border-radius:9em;padding:6em;display:flex;box-shadow:0 2.2em 3em -1em rgba(0,0,0,.85),inset 0 .6em .4em rgba(255,255,255,.12),inset 0 -1em 1.4em rgba(0,0,0,.45)}
+.tv-bezel{position:relative;flex:1;border-radius:7em;padding:3.4em;background:linear-gradient(160deg,#2c2c2e,#0d0d0f 60%,#1c1c1e);box-shadow:inset 0 .5em 1em rgba(0,0,0,.9),inset 0 -.3em .5em rgba(255,255,255,.07),0 .3em .2em rgba(255,255,255,.06)}
+.tv-screen{position:relative;aspect-ratio:4/3;border-radius:12% / 15%;overflow:hidden;background:#050806;box-shadow:inset 0 0 4em 1.5em rgba(0,0,0,.95),0 0 5em rgba(var(--arc),.25)}
+.tv-screen img,.tv-screen canvas,.tv-screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.tv-screen img{filter:contrast(1.15) saturate(1.15) brightness(.92);animation:crtflick 4s infinite steps(1)}
+.tv-screen canvas.fx{image-rendering:auto;filter:contrast(1.1) saturate(1.2) blur(.3px)}
+@keyframes crtflick{0%,100%{opacity:1}47%{opacity:.93}48%{opacity:1}73%{opacity:.96}}
+.tv-scan{position:absolute;inset:0;pointer-events:none;z-index:3;background:repeating-linear-gradient(0deg,rgba(0,0,0,.32) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+.tv-scan::after{content:"";position:absolute;left:0;right:0;height:22%;top:-25%;background:linear-gradient(transparent,rgba(255,255,255,.07),transparent);animation:roll 6s linear infinite}
+@keyframes roll{to{top:110%}}
+.tv-glass{position:absolute;inset:0;pointer-events:none;z-index:4;border-radius:inherit;background:radial-gradient(ellipse 70% 55% at 30% 18%,rgba(255,255,255,.2),rgba(255,255,255,.04) 45%,transparent 60%),radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%);box-shadow:inset 0 0 0 .4em rgba(0,0,0,.6)}
+.osd{position:absolute;z-index:5;font-family:"VT323",monospace;color:#E9FFEC;text-shadow:0 0 .5em rgba(var(--arc),.9),.12em 0 0 rgba(255,0,80,.6),-.12em 0 0 rgba(0,200,255,.6);pointer-events:none;letter-spacing:.06em}
+.osd.ch{top:6%;right:7%;font-size:9em}
+.osd.play{left:50%;top:50%;transform:translate(-50%,-50%);font-size:15em;opacity:0;transition:opacity .2s;background:rgba(0,0,0,.45);padding:.05em .4em;border-radius:.15em}
+.tv-hit{position:absolute;inset:0;z-index:6;background:none;border:0;padding:0;margin:0;border-radius:9em}
+.tv-hit:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.vtv:hover,.vtv:focus-within{transform:rotate(0deg) translateY(-1.2em) scale(1.03);z-index:5;filter:drop-shadow(0 0 3em rgba(var(--arc),.45))}
+.vtv:hover .osd.play,.vtv:focus-within .osd.play{opacity:1;animation:blinkosd 1s steps(1) infinite}
+@keyframes blinkosd{50%{opacity:.25}}
+.ftv:hover{transform:rotate(calc(var(--r) * -1))}
+
+/* wood */
+.tv-wood .tv-body{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.25) 55%,rgba(0,0,0,.45)),repeating-linear-gradient(93deg,#5b3417 0 .9em,#6d4120 .9em 1.6em,#4a2911 1.6em 2.1em,#7a4a25 2.1em 2.6em,#53301a 2.6em 3.6em);border:.6em solid #3a210d}
+.tv-panel.side{width:21em;margin-left:4.5em;display:flex;flex-direction:column;align-items:center;gap:3.2em;padding:2em 0;border-radius:3em;background:linear-gradient(180deg,#d9c9a8,#b9a57f);box-shadow:inset 0 .3em .4em rgba(255,255,255,.5),inset 0 -.4em .6em rgba(0,0,0,.35)}
+.tv-panel.side .grille{width:13em;flex:1;min-height:14em;border-radius:1.6em;background:repeating-linear-gradient(0deg,#3a2c1c 0 .6em,#8b7a5c .6em 1.4em)}
+.brand{font-family:"Space Mono",monospace;font-weight:700;font-size:4.6em;letter-spacing:.25em;color:#3a2a14;text-shadow:0 .08em 0 rgba(255,255,255,.5)}
+.dial{display:block;width:12em;height:12em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f2f2f0,#9c9c98 45%,#3b3b3a 75%);box-shadow:0 .6em .8em rgba(0,0,0,.55),inset 0 -.4em .5em rgba(0,0,0,.4);position:relative;border:0;padding:0}
+.dial::after{content:"";position:absolute;left:50%;top:10%;width:1em;height:40%;margin-left:-.5em;border-radius:.5em;background:#222;transform-origin:50% 100%;transform:rotate(var(--dr,20deg));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.dial.sm{width:8em;height:8em}
+.dial.xs{width:6em;height:6em}
+.trip-knob{font:inherit;color:inherit;cursor:pointer;box-shadow:0 .6em .8em rgba(0,0,0,.55),0 0 0 .5em rgba(var(--arc),.0);animation:knobpulse 2.4s infinite}
+.trip-knob:hover{animation:none;box-shadow:0 .6em .8em rgba(0,0,0,.55),0 0 0 .6em rgba(var(--arc),.7)}
+@keyframes knobpulse{50%{box-shadow:0 .6em .8em rgba(0,0,0,.55),0 0 0 .7em rgba(var(--arc),.45)}}
+.sticker{font-family:"Permanent Marker",cursive;font-size:4.2em;line-height:1;text-align:center;color:#c8102e;background:#fff7d6;padding:.25em .35em;transform:rotate(-8deg);box-shadow:0 .1em .2em rgba(0,0,0,.4)}
+.ftv .trip-knob{position:relative;z-index:7}
+.ftv .sticker{position:relative;z-index:7}
+
+/* silver */
+.tv-silver .tv-body,.tv-port .tv-body,.tv-black .tv-body{flex-direction:column}
+.tv-silver .tv-body{background:linear-gradient(180deg,#e6e6e2,#c4c5c1 40%,#9fa09b);border:.5em solid #8a8b86}
+.tv-port .tv-body{background:linear-gradient(180deg,#e9e3d3,#cfc6b0 50%,#a99f87);border:.5em solid #8f866f;padding:5em}
+.tv-black .tv-body{background:linear-gradient(180deg,#3a3a3d,#1b1b1d 50%,#101012);border:.5em solid #08080a}
+.tv-panel.bottom{display:flex;align-items:center;gap:4em;height:15em;margin-top:3.6em;padding:0 3em}
+.tv-panel.bottom .grille{flex:1;height:8em;border-radius:1em;background:repeating-linear-gradient(90deg,rgba(0,0,0,.55) 0 .6em,transparent .6em 1.5em)}
+.tv-black .tv-panel.bottom .grille{background:repeating-linear-gradient(90deg,rgba(255,255,255,.12) 0 .6em,transparent .6em 1.5em)}
+.btns{display:flex;gap:1.6em}
+.btns b{display:block;width:5.5em;height:4em;border-radius:.8em;background:linear-gradient(180deg,#5a5a5c,#2a2a2c);box-shadow:inset 0 .25em .2em rgba(255,255,255,.25),0 .3em .3em rgba(0,0,0,.5)}
+.tv-silver .btns b{background:linear-gradient(180deg,#f4f4f2,#b7b8b3);box-shadow:inset 0 -.3em .3em rgba(0,0,0,.25),0 .3em .3em rgba(0,0,0,.35)}
+.led{width:2.6em;height:2.6em;border-radius:50%;background:#ff2b2b;box-shadow:0 0 1.6em #ff2b2b}
+.tv-black .brand{color:#9a9a9e;text-shadow:none;font-size:4em}
+.tv-feet{position:absolute;bottom:-2.6em;left:12%;right:12%;height:3em;background:linear-gradient(90deg,#0b0b0c 0 9%,transparent 9% 91%,#0b0b0c 91%);border-radius:0 0 1em 1em;z-index:-1}
+.tv-ant{position:absolute;left:50%;top:0;width:0;height:0;z-index:-1}
+.tv-ant i{position:absolute;bottom:0;left:-.6em;width:1.2em;height:60em;background:linear-gradient(90deg,#777,#eee,#777);border-radius:1em;transform-origin:50% 100%}
+.tv-ant i:first-child{transform:rotate(-28deg)}
+.tv-ant i:last-child{transform:rotate(24deg);height:52em}
+.tv-ant::before{content:"";position:absolute;left:-7em;top:-3em;width:14em;height:6em;border-radius:7em 7em 1em 1em;background:linear-gradient(180deg,#444,#111)}
+.tape{position:absolute;left:50%;bottom:-1.5em;transform:translateX(-50%) rotate(-2deg);z-index:7;max-width:85%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:"Permanent Marker",cursive;font-size:max(11px,6.5em);color:#1d1d1d;background:linear-gradient(180deg,#f3ecd2,#e2d6b2);padding:.15em .7em;box-shadow:0 .2em .4em rgba(0,0,0,.45);clip-path:polygon(2% 0,98% 4%,100% 96%,0 100%)}
+
+/* channel guide */
+.guide{list-style:none;margin:70px auto 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1180px}
+.guide-btn{width:100%;height:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--text);display:flex;flex-direction:column;gap:6px;transition:border-color .2s,transform .2s;font-family:inherit}
+.guide-btn:hover{border-color:var(--accent);transform:translateY(-3px)}
+.g-ch{font-family:"VT323",monospace;font-size:24px;color:var(--accent);line-height:1}
+.g-t{font-family:Manrope,sans-serif;font-weight:700;font-size:14px;line-height:1.3}
+.g-m{font-size:11px;color:var(--dim);letter-spacing:.5px}
+@media (max-width:900px){.guide{grid-template-columns:1fr 1fr}}
+
+/* ================= TV PLAYER MODAL ================= */
+.tvm{position:fixed;inset:0;z-index:180;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 60%,rgba(var(--arc),.12),rgba(0,0,0,.94) 60%);backdrop-filter:blur(6px);overflow:auto;padding:30px 14px}
+.tvm[hidden]{display:none}
+.tvm-room{display:flex;flex-direction:column;align-items:center;gap:56px;margin:auto}
+.tvm-set{transform:none}
+.tvm-screen-on .tv-screen{animation:crton .7s cubic-bezier(.2,.8,.2,1)}
+.tvm-screen-off .tv-screen>*:not(.tv-glass){animation:crtoff .45s forwards cubic-bezier(.7,0,.8,.4)}
+@keyframes crton{0%{filter:brightness(4);clip-path:inset(49.5% 0 49.5% 0)}35%{filter:brightness(3);clip-path:inset(49% 0 49% 0)}70%{filter:brightness(1.6);clip-path:inset(0 0 0 0)}100%{filter:none;clip-path:inset(0)}}
+@keyframes crtoff{0%{transform:scale(1);filter:brightness(1)}60%{transform:scale(1,.006);filter:brightness(5)}100%{transform:scale(0,.006);filter:brightness(8);opacity:0}}
+.tvm-media{position:absolute;inset:0;background:#000}
+.tvm-media iframe,.tvm-media video{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:contain;background:#000}
+.tvm-static{opacity:0;z-index:2;pointer-events:none;transition:opacity .15s}
+.tvm-static.on{opacity:1}
+.tvm .tv-scan{opacity:.45}
+.tvm .osd.ch{font-size:5em}
+@media (max-width:700px){.guide{margin-top:30px}.wall-floor{height:60px}}
+.tvm .tv-glass{opacity:.55}
+.tvm-panel{gap:3em}
+.tvm-ctrls{display:flex;gap:2.4em}
+.tvm-btn{font-family:"VT323",monospace;font-size:max(14px,4.4em);letter-spacing:.06em;color:#1a1a1a;background:linear-gradient(180deg,#f4f4f2,#b7b8b3);border:0;border-radius:.4em;padding:.25em .9em;min-height:44px;box-shadow:inset 0 -.15em .15em rgba(0,0,0,.25),0 .15em .2em rgba(0,0,0,.4);cursor:pointer}
+.tvm-btn:hover{background:linear-gradient(180deg,#fff,#d6d7d2)}
+.tvm-btn.power{background:linear-gradient(180deg,#ff6a5f,#c8251b);color:#fff}
+.tvm-info{max-width:760px;text-align:center}
+.tvm-info h3{margin:0 0 10px;font-family:Unbounded,sans-serif;font-weight:800;font-size:clamp(22px,3vw,34px);letter-spacing:-.02em}
+.tvm-info p:not(.meta){margin:0 0 6px;color:var(--muted);font-size:17px;line-height:1.6}
+.tvm-info .yt-link{display:inline-block;margin-top:8px;font-size:13px;letter-spacing:1px;text-decoration:none;padding:10px 0}
+
+/* ================= TRIP MODE ================= */
+.trip-btn{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.35);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:9px 14px;min-height:40px;font-size:12px;letter-spacing:1.5px;transition:border-color .2s}
+.trip-btn:hover{border-color:var(--accent)}
+.trip-btn b{color:var(--accent);font-weight:700}
+.trip-dot{width:14px;height:14px;border-radius:50%;background:conic-gradient(#00ff41,#ff2bd6,#00e5ff,#ffe600,#00ff41);animation:spin 3s linear infinite}
+@media (max-width:900px){.trip-btn{margin-left:auto}.trip-lbl{display:none}}
+
+html[data-theme="neon"]{--arc:255,43,214;--bg:#07020A;--bg2:#0D0413;--card:#160819;--line:#3E1546;--text:#FFE9FB;--muted:#D9A8D4;--dim:#A06A9C;--accent:#FF2BD6;--hot:#00E5FF;--cool:#FFC8F4}
+html[data-theme="acid"]{--arc:255,230,0;--bg:#060500;--bg2:#0C0A02;--card:#141104;--line:#3D3407;--text:#FFFBE0;--muted:#D9CF8F;--dim:#9F9450;--accent:#FFE600;--hot:#FF3DCB;--cool:#7DF9FF}
+html[data-theme] body{transition:background-color .6s}
+html[data-theme="neon"] body,html[data-theme="acid"] body{background:var(--bg)}
+html[data-theme="neon"] canvas{filter:hue-rotate(195deg) saturate(1.5)}
+html[data-theme="acid"] canvas{filter:hue-rotate(-62deg) saturate(1.6) brightness(1.1)}
+html[data-theme="neon"] .tv-screen canvas.fx,html[data-theme="acid"] .tv-screen canvas.fx{filter:hue-rotate(0deg) saturate(1.5);animation:huecycle 6s linear infinite}
+@keyframes huecycle{to{filter:hue-rotate(360deg) saturate(1.5)}}
+.trip-fx{position:fixed;inset:-10%;z-index:85;pointer-events:none;opacity:0;transition:opacity .8s;mix-blend-mode:screen}
+.trip-fx i{position:absolute;inset:0;background:conic-gradient(from var(--spin,0deg) at 50% 50%,rgba(255,43,214,.16),rgba(0,229,255,.12),rgba(255,230,0,.12),rgba(0,255,65,.1),rgba(255,43,214,.16));filter:blur(40px);animation:spinvar 18s linear infinite}
+.trip-fx i:last-child{background:repeating-radial-gradient(circle at var(--tx,30%) var(--ty,40%),rgba(255,255,255,0) 0 40px,rgba(255,43,214,.05) 40px 80px,rgba(0,229,255,.05) 80px 120px);filter:blur(2px);animation:breathe 7s ease-in-out infinite}
+@property --spin{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes spinvar{to{--spin:360deg}}
+@keyframes breathe{50%{transform:scale(1.25) rotate(8deg)}}
+html[data-theme="neon"] .trip-fx,html[data-theme="acid"] .trip-fx{opacity:1}
+html[data-theme="neon"] h1,html[data-theme="neon"] h2,html[data-theme="acid"] h1,html[data-theme="acid"] h2{animation:chroma 2.6s infinite steps(1)}
+@keyframes chroma{0%,100%{text-shadow:-2px 0 rgba(0,229,255,.75),2px 0 rgba(255,43,214,.75)}30%{text-shadow:-4px 1px rgba(0,229,255,.8),4px -1px rgba(255,230,0,.7)}31%{text-shadow:-1px 0 rgba(0,229,255,.6),1px 0 rgba(255,43,214,.6)}70%{text-shadow:3px 0 rgba(0,229,255,.7),-3px 0 rgba(255,43,214,.7)}}
+html[data-theme="neon"] .outline,html[data-theme="acid"] .outline{-webkit-text-stroke-color:var(--accent);animation:huecycle2 5s linear infinite}
+@keyframes huecycle2{to{filter:hue-rotate(360deg)}}
+.theme-wipe{position:fixed;z-index:300;pointer-events:none;width:20px;height:20px;border-radius:50%;transform:translate(-50%,-50%) scale(0);mix-blend-mode:difference}
+.theme-warp main{animation:warp .7s ease-out}
+@keyframes warp{0%{filter:none}25%{filter:hue-rotate(90deg) saturate(3) blur(1px)}60%{filter:hue-rotate(-60deg) saturate(2)}100%{filter:none}}
+@media (prefers-reduced-motion:reduce){.trip-fx i,.tv-scan::after,.tv-screen img{animation:none !important}}
 </style>
 <script>(function(){try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')}catch(e){}})();</script>
 </head>
@@ -378,6 +512,19 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="intro-hud"><span>Loading edit<br><span id="ibits">0101 1100 0010</span></span><span class="pct"><span id="ipct">000</span>%</span></div>
   <div class="intro-bar" id="ibar"></div>
 </div>
+<div class="tvm" id="tvm" role="dialog" aria-modal="true" aria-label="TV player" hidden>
+  <div class="tvm-room" id="tvmRoom">
+    <div class="tv tv-silver tvm-set" id="tvmSet" style="--w:880;--r:0deg">
+      <span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
+      <div class="tv-body"><div class="tv-bezel"><div class="tv-screen" id="tvmScreen"><div class="tvm-media" id="tvmMedia"></div><canvas class="tvm-static" id="tvmStatic" width="160" height="120"></canvas><span class="osd ch" id="tvmOsd">CH 01</span><span class="tv-scan"></span><span class="tv-glass"></span></div></div>
+        <div class="tv-panel bottom tvm-panel"><span class="grille"></span>
+          <span class="tvm-ctrls"><button type="button" class="tvm-btn" id="tvmPrev" aria-label="Previous channel">CH ▼</button><button type="button" class="tvm-btn" id="tvmNext" aria-label="Next channel">CH ▲</button><button type="button" class="tvm-btn power" id="tvmClose" aria-label="Turn off the TV and close">⏻ OFF</button></span><span class="led on"></span></div></div>
+      <span class="tv-feet" aria-hidden="true"></span>
+    </div>
+    <div class="tvm-info"><p class="meta" id="tvmMeta"></p><h3 id="tvmTitle"></h3><p id="tvmDesc"></p><a class="yt-link mono" id="tvmLink" href="#">Watch on YouTube ↗</a></div>
+  </div>
+</div>
+<div class="trip-fx" aria-hidden="true"><i></i><i></i></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="mtx" id="mtx" aria-hidden="true"><canvas id="mtxc"></canvas><div class="mtx-label" id="mtxl"></div></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
@@ -388,12 +535,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
   <div class="wrap nav">
     <a href="#top" class="logo"><i class="rec" aria-hidden="true"></i>SPEEDY<span>GONZALO</span><small>the editor</small></a>
     <span class="status"><i></i>Available for projects</span>
+    <button type="button" class="trip-btn" id="tripBtn" aria-label="Change color mode"><span class="trip-dot"></span><span class="trip-lbl mono">MODE: <b id="tripName">MATRIX</b></span></button>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <nav class="links" id="links" aria-label="Main">
       <a href="#work">Work</a>
-      <a href="#youtube">YouTube</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#rates">Rates</a>
@@ -442,133 +589,81 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     </div>
   </div>
 
-  <section id="work">
+  <section id="work" class="tvwall-sec">
     <div class="wrap">
       <div class="sec-head">
-        <div class="mask"><h2>Selected work</h2><p class="range mono">01 / 2026</p></div>
+        <div class="mask"><p class="eyebrow">Selected work · tune in</p><h2>The TV wall</h2><p class="range mono">5 channels · click a screen to watch</p></div>
         <a href="https://www.youtube.com/@Speedy10932" class="btn btn-ghost magnetic">Full channel on YouTube <span class="arr">↗</span></a>
       </div>
-      <div class="feature reveal">
-        <div class="vid-wrap">
-          <div class="vid" id="vid" data-cursor="play">
-            <span class="badge"><i></i>PLAY THE EDIT</span>
-            <video src="assets/twitch-vod-edit.mp4" poster="assets/twitch-vod-poster.jpg" controls playsinline preload="metadata">Your browser does not support video playback.</video>
-          </div>
-        </div>
-        <div class="feature-body">
-          <div class="big-num">01</div>
-          <p class="meta">Showing off my editing skills to U, I get hired · 2026</p>
-          <h3>Twitch VOD → YouTube edit</h3>
-          <p>A horror game stream cut down into a tight 2½-minute video. It opens with a custom meme intro, then goes straight into the gameplay with the dead air gone, reactions zoomed in and sound effects on every jump scare.</p>
-          <div class="chips"><span>Meme intro</span><span>Pacing</span><span>SFX</span><span>Premiere Pro</span></div>
-        </div>
-      </div>
     </div>
-  </section>
-
-  <section id="youtube" class="alt">
+    <div class="wall-stage" id="wallStage">
+      <div class="wall-glow" aria-hidden="true"></div>
+      <div class="wall" id="wall">
+      <div class="wall-row">
+        <div class="tv ftv tv-port" style="--w:150;--r:-3deg" ><span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="static" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="tv vtv tv-black" style="--w:236;--r:1deg" data-ch="5">
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/I4CyHnFaREI/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 05</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="5" aria-label="Play BACK TOGETHER?"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span><span class="tape">BACK TOGETHER?</span>
+        </div>
+        <div class="tv ftv tv-wood" style="--w:190;--r:0deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="rings" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><span class="dial"></span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="tv ftv tv-black" style="--w:168;--r:2deg" ><span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="logo" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="wall-row">
+        <div class="tv ftv tv-black" style="--w:176;--r:-1deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="bars" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="tv vtv tv-wood" style="--w:330;--r:0deg" data-ch="2">
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/pejqBfhjOAE/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/pejqBfhjOAE/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/pejqBfhjOAE/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 02</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="2" aria-label="Play Gru goes to China"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><span class="dial"></span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span><span class="tape">Gru goes to China</span>
+        </div>
+        <div class="tv vtv tv-silver" style="--w:250;--r:-1deg" data-ch="4">
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/TMTwot0t9cw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 04</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="4" aria-label="Play THE TACO SHOW 🌮 · Pilot Episode"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span><span class="tape">THE TACO SHOW 🌮</span>
+        </div>
+        <div class="tv ftv tv-silver" style="--w:178;--r:1deg" ><span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="waves" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="wall-row">
+        <div class="tv ftv tv-wood" style="--w:236;--r:0deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="tunnel" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><button type="button" class="dial trip-knob" aria-label="Trip mode knob: change the site colors"></button><span class="sticker">DON'T<br>TOUCH</span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="tv vtv tv-silver" style="--w:400;--r:0deg" data-ch="1">
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="assets/twitch-vod-poster.jpg" alt="" loading="lazy"><span class="osd ch">CH 01</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="1" aria-label="Play Twitch VOD → YouTube edit"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span><span class="tape">Twitch VOD → YouTube e</span>
+        </div>
+        <div class="tv vtv tv-black" style="--w:318;--r:0deg" data-ch="3">
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/RhcoXRtnoJw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 03</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="3" aria-label="Play THE TACO SHOW · American Edition"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span><span class="tape">THE TACO SHOW</span>
+        </div>
+        <div class="tv ftv tv-port" style="--w:160;--r:-2deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="rain" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+      </div>
+      </div>
+      <div class="wall-floor" aria-hidden="true"></div>
+    </div>
     <div class="wrap">
-      <div class="sec-head">
-        <div class="mask"><p class="eyebrow">Straight from the channel</p><h2>YouTube videos</h2><p class="range mono">01 — 05</p></div>
-        <a href="https://www.youtube.com/@Speedy10932" class="btn btn-ghost magnetic">Subscribe on YouTube <span class="arr">↗</span></a>
-      </div>
-      <div class="yt-list">
-      <div class="feature yt-feature reveal">
-        <div class="vid-wrap">
-          <div class="vid yt-vid">
-            <button type="button" class="yt-face" data-yt="gIB73_PZ8x0" aria-label="Play Practice Edit 1 for editor job">
-              <img src="https://i.ytimg.com/vi/gIB73_PZ8x0/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/gIB73_PZ8x0/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/gIB73_PZ8x0/hqdefault.jpg'" alt="" loading="lazy">
-              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-              <span class="badge"><i></i>PLAY THE EDIT</span>
-            </button>
-          </div>
-        </div>
-        <div class="feature-body">
-          <div class="big-num">01</div>
-          <p class="meta">Showing off my editing skills to U, I get hired</p>
-          <h3>Practice Edit 1 for editor job</h3>
-          <p>My horror stream edit on YouTube: a custom meme intro, tight cuts, reaction zooms and SFX on every jump scare.</p>
-          <div class="chips"><span>Meme intro</span><span>Pacing</span><span>SFX</span></div>
-          <a class="yt-link mono" href="https://www.youtube.com/watch?v=gIB73_PZ8x0">Watch on YouTube ↗</a>
-        </div>
-      </div>
-      <div class="feature yt-feature reveal flip">
-        <div class="vid-wrap">
-          <div class="vid yt-vid">
-            <button type="button" class="yt-face" data-yt="pejqBfhjOAE" aria-label="Play Gru goes to China">
-              <img src="https://i.ytimg.com/vi/pejqBfhjOAE/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/pejqBfhjOAE/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/pejqBfhjOAE/hqdefault.jpg'" alt="" loading="lazy">
-              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-              <span class="badge"><i></i>PLAY THE EDIT</span>
-            </button>
-          </div>
-        </div>
-        <div class="feature-body">
-          <div class="big-num">02</div>
-          <p class="meta">Viral edit · 65K+ views</p>
-          <h3>Gru goes to China</h3>
-          <p>A short meme edit that blew up on the channel. Proof I know what makes people click, watch and share.</p>
-          <div class="chips"><span>Meme edit</span><span>Timing</span><span>Viral</span></div>
-          <a class="yt-link mono" href="https://www.youtube.com/watch?v=pejqBfhjOAE">Watch on YouTube ↗</a>
-        </div>
-      </div>
-      <div class="feature yt-feature reveal">
-        <div class="vid-wrap">
-          <div class="vid yt-vid">
-            <button type="button" class="yt-face" data-yt="RhcoXRtnoJw" aria-label="Play THE TACO SHOW · American Edition">
-              <img src="https://i.ytimg.com/vi/RhcoXRtnoJw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" alt="" loading="lazy">
-              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-              <span class="badge"><i></i>PLAY THE EDIT</span>
-            </button>
-          </div>
-        </div>
-        <div class="feature-body">
-          <div class="big-num">03</div>
-          <p class="meta">Series · Episode 2</p>
-          <h3>THE TACO SHOW · American Edition</h3>
-          <p>Episode two of my own comedy series. Longer-form editing that keeps a full story moving for almost 8 minutes.</p>
-          <div class="chips"><span>Long-form</span><span>Story</span><span>Comedy</span></div>
-          <a class="yt-link mono" href="https://www.youtube.com/watch?v=RhcoXRtnoJw">Watch on YouTube ↗</a>
-        </div>
-      </div>
-      <div class="feature yt-feature reveal flip">
-        <div class="vid-wrap">
-          <div class="vid yt-vid">
-            <button type="button" class="yt-face" data-yt="TMTwot0t9cw" aria-label="Play THE TACO SHOW 🌮 · Pilot Episode">
-              <img src="https://i.ytimg.com/vi/TMTwot0t9cw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" alt="" loading="lazy">
-              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-              <span class="badge"><i></i>PLAY THE EDIT</span>
-            </button>
-          </div>
-        </div>
-        <div class="feature-body">
-          <div class="big-num">04</div>
-          <p class="meta">Series · Pilot</p>
-          <h3>THE TACO SHOW 🌮 · Pilot Episode</h3>
-          <p>The pilot of The Taco Show, where the series and my editing style started.</p>
-          <div class="chips"><span>Series</span><span>Comedy</span><span>Pilot</span></div>
-          <a class="yt-link mono" href="https://www.youtube.com/watch?v=TMTwot0t9cw">Watch on YouTube ↗</a>
-        </div>
-      </div>
-      <div class="feature yt-feature reveal">
-        <div class="vid-wrap">
-          <div class="vid yt-vid">
-            <button type="button" class="yt-face" data-yt="I4CyHnFaREI" aria-label="Play BACK TOGETHER?">
-              <img src="https://i.ytimg.com/vi/I4CyHnFaREI/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" alt="" loading="lazy">
-              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-              <span class="badge"><i></i>PLAY THE EDIT</span>
-            </button>
-          </div>
-        </div>
-        <div class="feature-body">
-          <div class="big-num">05</div>
-          <p class="meta">Channel upload</p>
-          <h3>BACK TOGETHER?</h3>
-          <p>A story-driven edit with music, cuts and captions to keep it moving.</p>
-          <div class="chips"><span>Music</span><span>Captions</span><span>Cuts</span></div>
-          <a class="yt-link mono" href="https://www.youtube.com/watch?v=I4CyHnFaREI">Watch on YouTube ↗</a>
-        </div>
-      </div>
-      </div>
+      <ol class="guide mono" aria-label="Channel guide">
+        <li><button type="button" class="guide-btn" data-ch="1"><span class="g-ch">CH 01</span><span class="g-t">Twitch VOD → YouTube edit</span><span class="g-m">Showing off my editing skills to U, I get hired</span></button></li>
+        <li><button type="button" class="guide-btn" data-ch="2"><span class="g-ch">CH 02</span><span class="g-t">Gru goes to China</span><span class="g-m">Viral edit · 65K+ views</span></button></li>
+        <li><button type="button" class="guide-btn" data-ch="3"><span class="g-ch">CH 03</span><span class="g-t">THE TACO SHOW · American Edition</span><span class="g-m">Series · Episode 2</span></button></li>
+        <li><button type="button" class="guide-btn" data-ch="4"><span class="g-ch">CH 04</span><span class="g-t">THE TACO SHOW 🌮 · Pilot Episode</span><span class="g-m">Series · Pilot</span></button></li>
+        <li><button type="button" class="guide-btn" data-ch="5"><span class="g-ch">CH 05</span><span class="g-t">BACK TOGETHER?</span><span class="g-m">Channel upload</span></button></li>
+      </ol>
     </div>
   </section>
 
@@ -775,14 +870,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
     el.addEventListener('mouseenter',function(){ring.classList.add('hover')});
     el.addEventListener('mouseleave',function(){ring.classList.remove('hover')});
   });
-  var vid=document.getElementById('vid'),video=vid.querySelector('video');
-  vid.addEventListener('mouseenter',function(){if(video.paused){ring.classList.add('play');ring.textContent='PLAY'}});
-  vid.addEventListener('mouseleave',function(){ring.classList.remove('play');ring.textContent='';vid.style.transform=''});
-  video.addEventListener('play',function(){vid.classList.add('playing');ring.classList.remove('play');ring.textContent=''});
-  video.addEventListener('pause',function(){vid.classList.remove('playing')});
-  // tilt
-  vid.addEventListener('mousemove',function(e){if(!video.paused)return;var r=vid.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;vid.style.transform='rotateY('+(x*8)+'deg) rotateX('+(-y*8)+'deg)'});
-
   // magnetic buttons
   document.querySelectorAll('.magnetic').forEach(function(b){
     b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.35)+'px)'});
@@ -1183,6 +1270,104 @@ document.querySelectorAll('.yt-face').forEach(function(b){b.addEventListener('cl
   f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';f.title=b.getAttribute('aria-label').replace('Play ','');
   f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;
   b.parentNode.appendChild(f);b.remove()})});
+</script>
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // ---------- scale wall to fit ----------
+  var wall=document.getElementById('wall'),stage=document.getElementById('wallStage');
+  function fit(){if(!wall)return;var avail=Math.min(innerWidth-16,1240),sc=Math.min(1,avail/1180);wall.style.transform='scale('+sc+')';wall.style.marginBottom=(-(1-sc)*wall.offsetHeight)+'px'}
+  window.addEventListener('resize',fit);fit();setTimeout(fit,400);
+
+  // ---------- filler TV patterns ----------
+  var PATTERNS=['rings','waves','tunnel','kaleido','bars','static','rain','logo','plasma'];
+  var fx=[].slice.call(document.querySelectorAll('canvas.fx')),vis=new Set(),burst=new Map();
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?vis.add(e.target):vis.delete(e.target)})});fx.forEach(function(c){io.observe(c)})}else fx.forEach(function(c){vis.add(c)});
+  var KANA='ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ01';
+  var rainState=new Map();
+  function hsl(h,s,l){return 'hsl('+h+','+s+'%,'+l+'%)'}
+  var PAL=[[330,95,62],[190,95,55],[50,100,58],[120,90,50],[285,85,62],[15,95,58]];
+  function draw(c,t){
+    var g=c.getContext('2d'),W=c.width,H=c.height,p=c.getAttribute('data-p');
+    if(burst.has(c)&&t<burst.get(c))p='static';
+    if(p==='static'){var im=g.createImageData(W,H),d=im.data;for(var i=0;i<d.length;i+=4){var v=Math.random()*255;d[i]=d[i+1]=d[i+2]=v;d[i+3]=255}g.putImageData(im,0,0);return}
+    if(p==='bars'){var cols=['#c0c0c0','#c0c000','#00c0c0','#00c000','#c000c0','#c00000','#0000c0'];for(var i=0;i<7;i++){g.fillStyle=cols[i];g.fillRect(i*W/7,0,W/7+1,H*.7)}
+      var c2=['#0000c0','#111','#c000c0','#111','#00c0c0','#111','#c0c0c0'];for(var i=0;i<7;i++){g.fillStyle=c2[i];g.fillRect(i*W/7,H*.7,W/7+1,H*.08)}
+      g.fillStyle='#0a0a0a';g.fillRect(0,H*.78,W,H*.22);if(Math.floor(t/600)%2){g.fillStyle='#fff';g.font='bold 12px monospace';g.textAlign='center';g.fillText('NO SIGNAL',W/2,H*.92)}return}
+    if(p==='rings'){var cx=W/2+Math.sin(t/900)*10,cy=H/2+Math.cos(t/1100)*6;for(var r=Math.hypot(W,H);r>0;r-=5){var k=Math.floor(r/5+t/90)%PAL.length,q=PAL[k];g.fillStyle=hsl((q[0]+t/30)%360,q[1],q[2]);g.beginPath();g.ellipse(cx,cy,r*1.15,r*.8,Math.sin(t/2000)*.4,0,Math.PI*2);g.fill()}return}
+    if(p==='waves'){for(var y=0;y<H;y+=2){for(var x=0;x<W;x+=4){var v=Math.floor((y+Math.sin(x*.07+t/400)*9+Math.sin(x*.02-t/700)*6+t/40)/9),q=PAL[((v%PAL.length)+PAL.length)%PAL.length];g.fillStyle=hsl(q[0],q[1],q[2]);g.fillRect(x,y,4,2)}}return}
+    if(p==='tunnel'||p==='kaleido'||p==='plasma'){var im=g.createImageData(W,H),d=im.data,tt=t/1000;
+      for(var y=0;y<H;y++)for(var x=0;x<W;x++){var dx=(x-W/2)/H,dy=(y-H/2)/H,a=Math.atan2(dy,dx),r=Math.sqrt(dx*dx+dy*dy)+1e-3,v;
+        if(p==='tunnel')v=Math.sin(1/r*3-tt*4)+Math.sin(a*6+tt*1.5);
+        else if(p==='kaleido'){var aa=Math.abs(((a+tt*.4)%(Math.PI/3))-Math.PI/6);v=Math.sin(aa*14+r*20-tt*3)+Math.cos(r*30-tt*2)}
+        else v=Math.sin(x*.09+tt*2)+Math.sin(y*.11-tt*1.6)+Math.sin((x+y)*.06+tt)+Math.sin(r*24-tt*3);
+        var h=(v*60+tt*60)%360;if(h<0)h+=360;var i=(y*W+x)*4,cc=hslRgb(h/360,1,.55);d[i]=cc[0];d[i+1]=cc[1];d[i+2]=cc[2];d[i+3]=255}
+      g.putImageData(im,0,0);return}
+    if(p==='rain'){var st=rainState.get(c);if(!st){st=[];for(var i=0;i<W/8;i++)st.push(Math.random()*-20);rainState.set(c,st)}
+      g.fillStyle='rgba(0,0,0,.25)';g.fillRect(0,0,W,H);g.font='bold 9px monospace';for(var i=0;i<st.length;i++){g.fillStyle='#c8ffd4';g.fillText(KANA[Math.floor(Math.random()*KANA.length)],i*8,st[i]*9);g.fillStyle='#00ff41';g.fillText(KANA[Math.floor(Math.random()*KANA.length)],i*8,st[i]*9-9);st[i]+=.6;if(st[i]*9>H+20)st[i]=Math.random()*-10}return}
+    if(p==='logo'){g.fillStyle='#030503';g.fillRect(0,0,W,H);var j=Math.random()<.12?(Math.random()-.5)*8:0;g.textAlign='center';g.font='bold 19px monospace';
+      [['#ff2bd6',-2],['#00e5ff',2],['#e9ffec',0]].forEach(function(o){g.fillStyle=o[0];g.globalAlpha=o[1]?.6:1;g.fillText('SPEEDY',W/2+o[1]+j,H*.44);g.fillText('GONZALO',W/2+o[1]-j,H*.66)});g.globalAlpha=1;
+      var ry=(t/20)%H;g.fillStyle='rgba(255,255,255,.08)';g.fillRect(0,ry,W,10);return}
+  }
+  function hslRgb(h,s,l){var q=l<.5?l*(1+s):l+s-l*s,p=2*l-q;function f(t){if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p}return [f(h+1/3)*255,f(h)*255,f(h-1/3)*255]}
+  var last=0;
+  function loop(t){if(t-last>45){last=t;vis.forEach(function(c){draw(c,t)})}requestAnimationFrame(loop)}
+  if(fx.length){if(reduce)fx.forEach(function(c){draw(c,0)});else requestAnimationFrame(loop)}
+  document.querySelectorAll('.fx-hit').forEach(function(b){b.addEventListener('click',function(){var c=b.parentNode.querySelector('canvas.fx'),cur=PATTERNS.indexOf(c.getAttribute('data-p'));
+    burst.set(c,performance.now()+280);c.setAttribute('data-p',PATTERNS[(cur+1)%PATTERNS.length]);if(reduce)draw(c,0)})});
+
+  // ---------- TV player modal ----------
+  var CH=[].map.call(document.querySelectorAll('.guide-btn'),function(b){return +b.getAttribute('data-ch')});
+  var DATA={};
+  document.querySelectorAll('.guide-btn').forEach(function(b){DATA[b.getAttribute('data-ch')]={title:b.querySelector('.g-t').textContent,meta:b.querySelector('.g-m').textContent}});
+  var SRC={1:{mp4:'assets/twitch-vod-edit.mp4',yt:'gIB73_PZ8x0',desc:'A horror game stream cut into a tight 2½-minute video: custom meme intro, dead air gone, reaction zooms and SFX on every jump scare.'},
+    2:{yt:'pejqBfhjOAE',desc:'A short meme edit that blew up on the channel. Proof I know what makes people click, watch and share.'},
+    3:{yt:'RhcoXRtnoJw',desc:'Episode two of my own comedy series. Longer-form editing that keeps a full story moving for almost 8 minutes.'},
+    4:{yt:'TMTwot0t9cw',desc:'The pilot of The Taco Show, where the series and my editing style started.'},
+    5:{yt:'I4CyHnFaREI',desc:'A story-driven edit with music, cuts and captions to keep it moving.'}};
+  var tvm=document.getElementById('tvm'),set=document.getElementById('tvmSet'),media=document.getElementById('tvmMedia'),stc=document.getElementById('tvmStatic'),osd=document.getElementById('tvmOsd');
+  var cur=1,lastFocus=null,staticRaf=0;
+  function size(){var w=Math.min(880,innerWidth*.94,(innerHeight-260)*1.12);set.style.setProperty('--w',Math.max(300,Math.round(w)))}
+  function noise(on){if(!on){stc.classList.remove('on');cancelAnimationFrame(staticRaf);return}stc.classList.add('on');var g=stc.getContext('2d');
+    (function f(){var im=g.createImageData(160,120),d=im.data;for(var i=0;i<d.length;i+=4){var v=Math.random()*255;d[i]=d[i+1]=d[i+2]=v;d[i+3]=255}g.putImageData(im,0,0);staticRaf=requestAnimationFrame(f)})()}
+  function load(ch){cur=ch;var s=SRC[ch],d=DATA[ch];media.innerHTML='';
+    osd.textContent='CH '+(ch<10?'0':'')+ch;
+    document.getElementById('tvmMeta').textContent=d.meta;document.getElementById('tvmTitle').textContent=d.title;document.getElementById('tvmDesc').textContent=s.desc;
+    var link=document.getElementById('tvmLink');link.href='https://www.youtube.com/watch?v='+s.yt;
+    noise(true);
+    setTimeout(function(){
+      if(s.mp4){var v=document.createElement('video');v.src=s.mp4;v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute('playsinline','');media.appendChild(v);try{v.play().catch(function(){})}catch(e){}}
+      else{var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+s.yt+'?autoplay=1&rel=0&modestbranding=1';f.title=d.title;f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;media.appendChild(f)}
+      setTimeout(function(){noise(false)},reduce?0:220)},reduce?0:320)}
+  function open(ch,from){lastFocus=from||document.activeElement;size();tvm.hidden=false;document.body.style.overflow='hidden';
+    set.classList.remove('tvm-screen-off');void set.offsetWidth;set.classList.add('tvm-screen-on');load(ch);setTimeout(function(){document.getElementById('tvmClose').focus()},50)}
+  function close(){set.classList.remove('tvm-screen-on');set.classList.add('tvm-screen-off');noise(false);
+    setTimeout(function(){media.innerHTML='';tvm.hidden=true;set.classList.remove('tvm-screen-off');document.body.style.overflow='';if(lastFocus)lastFocus.focus()},reduce?0:480)}
+  function step(dir){var i=CH.indexOf(cur);load(CH[(i+dir+CH.length)%CH.length])}
+  document.querySelectorAll('.vtv .tv-hit, .guide-btn').forEach(function(b){b.addEventListener('click',function(){open(+b.getAttribute('data-ch'),b)})});
+  document.getElementById('tvmClose').addEventListener('click',close);
+  document.getElementById('tvmNext').addEventListener('click',function(){step(1)});
+  document.getElementById('tvmPrev').addEventListener('click',function(){step(-1)});
+  tvm.addEventListener('click',function(e){if(e.target===tvm||e.target.id==='tvmRoom')close()});
+  window.addEventListener('keydown',function(e){if(tvm.hidden)return;if(e.key==='Escape')close();else if(e.key==='ArrowRight'||e.key==='ArrowUp'){e.preventDefault();step(1)}else if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();step(-1)}});
+  window.addEventListener('resize',function(){if(!tvm.hidden)size()});
+
+  // ---------- trip mode ----------
+  var THEMES=['matrix','neon','acid'],NAMES={matrix:'MATRIX',neon:'NEON',acid:'ACID'},WIPE={matrix:'#00FF41',neon:'#FF2BD6',acid:'#FFE600'};
+  var root=document.documentElement,tname=document.getElementById('tripName'),ti=0;
+  function setTheme(i,x,y){ti=i;var t=THEMES[i];
+    if(!reduce&&x!=null){var w=document.createElement('div');w.className='theme-wipe';w.style.left=x+'px';w.style.top=y+'px';w.style.background=WIPE[t];document.body.appendChild(w);
+      var R=Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y))/10;
+      w.animate([{transform:'translate(-50%,-50%) scale(0)',opacity:.9},{transform:'translate(-50%,-50%) scale('+R+')',opacity:.55},{transform:'translate(-50%,-50%) scale('+R+')',opacity:0}],{duration:900,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=function(){w.remove()};
+      document.body.classList.add('theme-warp');setTimeout(function(){document.body.classList.remove('theme-warp')},720)}
+    if(t==='matrix')root.removeAttribute('data-theme');else root.setAttribute('data-theme',t);
+    if(tname)tname.textContent=NAMES[t];
+    document.querySelectorAll('.trip-knob').forEach(function(k){k.style.setProperty('--dr',(20+i*120)+'deg')})}
+  function next(e){var r=e&&e.currentTarget.getBoundingClientRect();setTheme((ti+1)%THEMES.length,r?r.left+r.width/2:innerWidth/2,r?r.top+r.height/2:innerHeight/2)}
+  var tb=document.getElementById('tripBtn');if(tb)tb.addEventListener('click',next);
+  document.querySelectorAll('.trip-knob').forEach(function(k){k.addEventListener('click',function(e){e.stopPropagation();next(e)})});
+})();
+
 </script>
 </body>
 </html>
