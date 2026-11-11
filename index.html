@@ -243,6 +243,20 @@ section h2{font-size:clamp(38px,5vw,76px)}
 .bio .hl{background:linear-gradient(var(--accent),var(--accent)) no-repeat 0 100%/0 35%;transition:background-size 1.2s cubic-bezier(.2,.8,.2,1);color:var(--text)}
 .in .bio .hl{background-size:100% 35%}
 
+/* youtube section */
+.yt-list{display:flex;flex-direction:column;gap:110px}
+.feature.flip .vid-wrap{order:2}
+.vid.yt-vid{aspect-ratio:16/9}
+.yt-face{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;margin:0;background:#000;display:block;overflow:hidden;border-radius:20px}
+.yt-face img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.8) saturate(.9);transition:transform .6s,filter .4s}
+.yt-feature:hover .yt-face img{transform:scale(1.05);filter:none}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 34px rgba(0,255,65,.65);transition:transform .3s;z-index:3}
+.yt-play svg{width:32px;height:32px;fill:#020403;margin-left:4px}
+.yt-feature:hover .yt-play{transform:scale(1.12)}
+.yt-vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;z-index:1;border-radius:20px}
+.yt-link{display:inline-block;margin-top:20px;font-size:13px;letter-spacing:1px;text-decoration:none;padding:10px 0}
+@media (max-width:900px){.feature.flip .vid-wrap{order:0}.yt-list{gap:70px}}
+
 /* skills */
 .styles{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;margin-bottom:24px}
 .panel-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px;position:relative;overflow:hidden}
@@ -462,7 +476,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       <div class="feature yt-feature reveal">
         <div class="vid-wrap">
           <div class="vid yt-vid">
-            <iframe src="https://www.youtube-nocookie.com/embed/gIB73_PZ8x0?rel=0&amp;modestbranding=1" title="Practice Edit 1 for editor job" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <button type="button" class="yt-face" data-yt="gIB73_PZ8x0" aria-label="Play Practice Edit 1 for editor job">
+              <img src="https://i.ytimg.com/vi/gIB73_PZ8x0/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/gIB73_PZ8x0/hqdefault.jpg'" alt="" loading="lazy">
+              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+              <span class="badge"><i></i>PLAY THE EDIT</span>
+            </button>
           </div>
         </div>
         <div class="feature-body">
@@ -477,7 +495,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       <div class="feature yt-feature reveal flip">
         <div class="vid-wrap">
           <div class="vid yt-vid">
-            <iframe src="https://www.youtube-nocookie.com/embed/pejqBfhjOAE?rel=0&amp;modestbranding=1" title="Gru goes to China" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <button type="button" class="yt-face" data-yt="pejqBfhjOAE" aria-label="Play Gru goes to China">
+              <img src="https://i.ytimg.com/vi/pejqBfhjOAE/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/pejqBfhjOAE/hqdefault.jpg'" alt="" loading="lazy">
+              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+              <span class="badge"><i></i>PLAY THE EDIT</span>
+            </button>
           </div>
         </div>
         <div class="feature-body">
@@ -492,7 +514,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       <div class="feature yt-feature reveal">
         <div class="vid-wrap">
           <div class="vid yt-vid">
-            <iframe src="https://www.youtube-nocookie.com/embed/RhcoXRtnoJw?rel=0&amp;modestbranding=1" title="THE TACO SHOW · American Edition" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <button type="button" class="yt-face" data-yt="RhcoXRtnoJw" aria-label="Play THE TACO SHOW · American Edition">
+              <img src="https://i.ytimg.com/vi/RhcoXRtnoJw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" alt="" loading="lazy">
+              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+              <span class="badge"><i></i>PLAY THE EDIT</span>
+            </button>
           </div>
         </div>
         <div class="feature-body">
@@ -507,7 +533,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       <div class="feature yt-feature reveal flip">
         <div class="vid-wrap">
           <div class="vid yt-vid">
-            <iframe src="https://www.youtube-nocookie.com/embed/TMTwot0t9cw?rel=0&amp;modestbranding=1" title="THE TACO SHOW 🌮 · Pilot Episode" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <button type="button" class="yt-face" data-yt="TMTwot0t9cw" aria-label="Play THE TACO SHOW 🌮 · Pilot Episode">
+              <img src="https://i.ytimg.com/vi/TMTwot0t9cw/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" alt="" loading="lazy">
+              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+              <span class="badge"><i></i>PLAY THE EDIT</span>
+            </button>
           </div>
         </div>
         <div class="feature-body">
@@ -522,7 +552,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
       <div class="feature yt-feature reveal">
         <div class="vid-wrap">
           <div class="vid yt-vid">
-            <iframe src="https://www.youtube-nocookie.com/embed/I4CyHnFaREI?rel=0&amp;modestbranding=1" title="BACK TOGETHER?" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <button type="button" class="yt-face" data-yt="I4CyHnFaREI" aria-label="Play BACK TOGETHER?">
+              <img src="https://i.ytimg.com/vi/I4CyHnFaREI/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" alt="" loading="lazy">
+              <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+              <span class="badge"><i></i>PLAY THE EDIT</span>
+            </button>
           </div>
         </div>
         <div class="feature-body">
@@ -1142,6 +1176,13 @@ document.querySelectorAll('.yt-frame').forEach(function(b){b.addEventListener('c
   f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label');
   f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;
   b.innerHTML='';b.appendChild(f);b.removeAttribute('aria-label')},{once:true})});
+</script>
+<script>
+document.querySelectorAll('.yt-face').forEach(function(b){b.addEventListener('click',function(){
+  var id=b.getAttribute('data-yt'),f=document.createElement('iframe');
+  f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';f.title=b.getAttribute('aria-label').replace('Play ','');
+  f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;
+  b.parentNode.appendChild(f);b.remove()})});
 </script>
 </body>
 </html>
