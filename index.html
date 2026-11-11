@@ -965,7 +965,12 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
   for(var i=0;i<36;i++){var a=i/36*Math.PI*2;floor.push({x:Math.cos(a)*.9,z:Math.sin(a)*.65,c:rk()})}
 
   // ---- randomized intro scenes + colors ----
-  var SCENES=['fight','standoff','pills','reel','warp','bear','dna','rocket','planet','galaxy','controller'],scene=SCENES[Math.floor(Math.random()*SCENES.length)];
+  var SCENES=['fight','standoff','pills','reel','warp','bear','dna','rocket','planet','galaxy','controller'];
+  var WEIGHT={fight:1,standoff:1,pills:1,reel:1,warp:1,bear:4,dna:4,rocket:4,planet:4,galaxy:4,controller:4},lastScene=null;
+  try{lastScene=localStorage.getItem('sg_last_scene')}catch(e){}
+  var pool=SCENES.filter(function(x){return x!==lastScene}),tot=pool.reduce(function(a,x){return a+WEIGHT[x]},0),roll=Math.random()*tot,scene=pool[0];
+  for(var wi=0;wi<pool.length;wi++){roll-=WEIGHT[pool[wi]];if(roll<=0){scene=pool[wi];break}}
+  try{localStorage.setItem('sg_last_scene',scene)}catch(e){}
   try{var qs=(location.hash.match(/scene-(\w+)/)||[])[1];if(qs&&SCENES.indexOf(qs)>-1)scene=qs}catch(e){}
   var HUES=[0,200,100,155,-90,65,-120,30];intro.style.filter='hue-rotate('+HUES[Math.floor(Math.random()*HUES.length)]+'deg) saturate(1.25)';
   P.aim=[[.1,1.77,0],[.05,1.55,0],[0,.95,0],[.05,1.5,.17],[.34,1.5,.14],[.64,1.5,.08],[.0,1.5,-.17],[.22,1.33,-.1],[.58,1.47,.02],[.02,.95,.11],[.2,.5,.15],[.3,0,.16],[-.02,.95,-.11],[-.16,.5,-.13],[-.3,0,-.13]];
