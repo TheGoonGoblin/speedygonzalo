@@ -516,6 +516,10 @@ canvas.srv{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-ev
 html[data-theme] .srv-shade{background:radial-gradient(ellipse 60% 55% at 50% 58%,rgba(0,0,0,.15),rgba(0,0,0,.55) 70%,var(--bg) 100%),linear-gradient(180deg,var(--bg) 0,transparent 12%,transparent 85%,var(--bg) 100%)}
 html[data-theme] .tvwall-sec{background:var(--bg)}
 .tvwall-sec .wall-glow{background:radial-gradient(ellipse at center,rgba(var(--arc),.12),transparent 60%)}
+
+/* flying lips flocks */
+canvas.lips-sky{position:fixed;inset:0;width:100vw;height:100vh;z-index:35;pointer-events:none}
+html[data-theme] canvas.lips-sky{filter:none}
 </style>
 <script>(function(){try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')}catch(e){}})();</script>
 </head>
@@ -1467,6 +1471,43 @@ document.querySelectorAll('.yt-face').forEach(function(b){b.addEventListener('cl
   build();window.addEventListener('resize',function(){clearTimeout(c._t);c._t=setTimeout(build,150)});setTimeout(build,600);
   if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(c);
   if(!reduce)requestAnimationFrame(loop);
+})();
+
+// ---------- flocks of flying lips (homepage only) ----------
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var c=document.createElement('canvas');c.className='lips-sky';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+  var g=c.getContext('2d'),DPR=Math.min(devicePixelRatio||1,2),W,H,img=new Image(),ready=false,flocks=[],nextAt=performance.now()+4000;
+  img.onload=function(){ready=true};img.src='assets/lips.png';
+  function size(){W=innerWidth;H=innerHeight;c.width=W*DPR;c.height=H*DPR;g.setTransform(DPR,0,0,DPR,0,0)}
+  size();window.addEventListener('resize',size);
+  function blocked(){var r=document.documentElement,b=document.body;return document.hidden||r.classList.contains('intro-on')||b.classList.contains('on-contact')||!document.getElementById('tvm').hidden}
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  function spawn(){
+    var fromLeft=Math.random()<.5,n=Math.floor(rnd(14,34)),y0=rnd(H*.12,H*.8),ang=(fromLeft?0:Math.PI)+rnd(-.35,.35),sp=rnd(150,240);
+    var L={x:fromLeft?-80:W+80,y:y0,a:ang,sp:sp,turn:rnd(-.25,.25),wob:rnd(.6,1.4),t:0,birds:[]};
+    for(var i=0;i<n;i++){var row=Math.floor(Math.sqrt(i)),off=(i-row*row)-row;
+      L.birds.push({ox:-row*rnd(26,40),oy:off*rnd(16,24)+rnd(-8,8),x:L.x,y:L.y,vx:0,vy:0,s:rnd(.16,.3),fl:rnd(7,11),ph:rnd(0,6.28),j:rnd(.6,1.6)})}
+    flocks.push(L)}
+  var last=performance.now();
+  function frame(now){var dt=Math.min(.05,(now-last)/1000);last=now;g.clearRect(0,0,W,H);
+    if(blocked()){flocks.length=0;nextAt=now+5000;requestAnimationFrame(frame);return}
+    if(now>nextAt&&ready){spawn();if(Math.random()<.35)setTimeout(spawn,rnd(500,1400));nextAt=now+rnd(11000,22000)}
+    for(var f=flocks.length-1;f>=0;f--){var L=flocks[f];L.t+=dt;
+      L.a+=Math.sin(L.t*L.wob)*L.turn*dt;L.x+=Math.cos(L.a)*L.sp*dt;L.y+=Math.sin(L.a)*L.sp*dt+Math.sin(L.t*2.1)*30*dt;
+      var ca=Math.cos(L.a),sa=Math.sin(L.a),alive=false;
+      for(var i=0;i<L.birds.length;i++){var B=L.birds[i];
+        var tx=L.x+B.ox*ca-B.oy*sa+Math.sin(L.t*B.j*3+B.ph)*14,ty=L.y+B.ox*sa+B.oy*ca+Math.cos(L.t*B.j*2.4+B.ph)*12;
+        B.vx+=(tx-B.x)*6*dt;B.vy+=(ty-B.y)*6*dt;B.vx*=.9;B.vy*=.9;B.x+=B.vx*dt*10;B.y+=B.vy*dt*10;
+        if(B.x>-120&&B.x<W+120&&B.y>-120&&B.y<H+120)alive=true;
+        if(!ready)continue;
+        var flap=Math.sin(L.t*B.fl+B.ph),w=img.width*B.s,h=img.height*B.s*(.55+.45*Math.abs(flap));
+        g.save();g.translate(B.x,B.y);g.rotate(Math.atan2(B.vy,B.vx+(Math.cos(L.a)>0?.001:-.001))*.35+(Math.cos(L.a)<0?0:0));
+        if(Math.cos(L.a)<0)g.scale(-1,1);
+        g.globalAlpha=.95;g.drawImage(img,-w/2,-h/2,w,h);g.restore()}
+      if(!alive&&L.t>2)flocks.splice(f,1)}
+    requestAnimationFrame(frame)}
+  requestAnimationFrame(frame);
 })();
 
 </script>
