@@ -367,11 +367,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 }
 
 /* ================= CRT TV WALL ================= */
-.tvwall-sec{padding-bottom:80px;overflow:hidden}
-.wall-stage{position:relative;margin:10px auto 0;padding:40px 0 0}
+.tvwall-sec{position:relative;padding-bottom:80px;overflow:hidden;isolation:isolate;background:#020403}
+.tvwall-sec>.wrap,.tvwall-sec>.wall-stage{position:relative;z-index:2}
+.wall-stage{position:relative;margin:10px auto 0;padding:40px 0 0;display:flex;flex-direction:column;align-items:center}
 .wall-glow{position:absolute;left:50%;top:45%;width:1100px;height:700px;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center,rgba(var(--arc),.16),transparent 65%);filter:blur(30px);pointer-events:none}
-.wall{position:relative;width:1180px;margin:0 auto;transform-origin:top center;display:flex;flex-direction:column;align-items:center}
-.wall-row{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin-bottom:4px}
+.wall{position:relative;z-index:2;width:1300px;margin:0;flex:none;transform-origin:top center;display:flex;align-items:flex-end;justify-content:center;gap:6px}
+.wall-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.wall-col>.tv{margin-top:-.4em}
+.wall-col>.tv:first-child{margin-top:0}
 .wall-floor{width:min(1300px,96vw);height:120px;margin:-6px auto 0;background:radial-gradient(ellipse at 50% 0,rgba(var(--arc),.22),transparent 70%);filter:blur(10px);opacity:.8;pointer-events:none}
 
 .tv{--u:calc(var(--w) * .01px);position:relative;width:calc(var(--w) * 1px);font-size:var(--u);transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s;flex:none}
@@ -425,7 +428,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .tv-silver .btns b{background:linear-gradient(180deg,#f4f4f2,#b7b8b3);box-shadow:inset 0 -.3em .3em rgba(0,0,0,.25),0 .3em .3em rgba(0,0,0,.35)}
 .led{width:2.6em;height:2.6em;border-radius:50%;background:#ff2b2b;box-shadow:0 0 1.6em #ff2b2b}
 .tv-black .brand{color:#9a9a9e;text-shadow:none;font-size:4em}
-.tv-feet{position:absolute;bottom:-2.6em;left:12%;right:12%;height:3em;background:linear-gradient(90deg,#0b0b0c 0 9%,transparent 9% 91%,#0b0b0c 91%);border-radius:0 0 1em 1em;z-index:-1}
+.tv-feet{position:absolute;bottom:-1.2em;left:12%;right:12%;height:3em;background:linear-gradient(90deg,#0b0b0c 0 9%,transparent 9% 91%,#0b0b0c 91%);border-radius:0 0 1em 1em;z-index:-1}
 .tv-ant{position:absolute;left:50%;top:0;width:0;height:0;z-index:-1}
 .tv-ant i{position:absolute;bottom:0;left:-.6em;width:1.2em;height:60em;background:linear-gradient(90deg,#777,#eee,#777);border-radius:1em;transform-origin:50% 100%}
 .tv-ant i:first-child{transform:rotate(-28deg)}
@@ -499,6 +502,20 @@ html[data-theme="neon"] .outline,html[data-theme="acid"] .outline{-webkit-text-s
 .theme-warp main{animation:warp .7s ease-out}
 @keyframes warp{0%{filter:none}25%{filter:hue-rotate(90deg) saturate(3) blur(1px)}60%{filter:hue-rotate(-60deg) saturate(2)}100%{filter:none}}
 @media (prefers-reduced-motion:reduce){.trip-fx i,.tv-scan::after,.tv-screen img{animation:none !important}}
+
+/* VCR decks used as supports */
+.vcr{--u:calc(var(--w) * .01px);font-size:var(--u);width:calc(var(--w) * 1px);height:17em;position:relative;margin-top:-.2em;border-radius:2em;background:linear-gradient(180deg,#2b2b2e,#151517 60%,#0c0c0d);box-shadow:0 1.6em 2em -1em rgba(0,0,0,.9),inset 0 .5em .3em rgba(255,255,255,.08),inset 0 -.6em .6em rgba(0,0,0,.6);display:flex;align-items:center;gap:5em;padding:0 6em;flex:none}
+.vcr-slot{flex:1;height:4.5em;border-radius:.6em;background:linear-gradient(180deg,#000,#1d1d1f);box-shadow:inset 0 .4em .5em rgba(0,0,0,.9),0 .2em 0 rgba(255,255,255,.07)}
+.vcr-lcd{font-family:"VT323",monospace;font-size:8.5em;line-height:1;color:var(--accent);text-shadow:0 0 .4em rgba(var(--arc),.9);background:#050806;padding:.05em .3em;border-radius:.1em;animation:vcrblink 1.4s steps(1) infinite}
+@keyframes vcrblink{50%{opacity:.35}}
+.vcr-btns{display:flex;gap:1.8em}.vcr-btns b{width:5em;height:3em;border-radius:.6em;background:linear-gradient(180deg,#4a4a4d,#222)}
+
+/* dark server room behind the TV wall */
+canvas.srv{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+.srv-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 50% 58%,rgba(0,0,0,.15),rgba(0,0,0,.55) 70%,rgba(2,4,3,.95) 100%),linear-gradient(180deg,#020403 0,rgba(2,4,3,0) 12%,rgba(2,4,3,0) 85%,#020403 100%)}
+html[data-theme] .srv-shade{background:radial-gradient(ellipse 60% 55% at 50% 58%,rgba(0,0,0,.15),rgba(0,0,0,.55) 70%,var(--bg) 100%),linear-gradient(180deg,var(--bg) 0,transparent 12%,transparent 85%,var(--bg) 100%)}
+html[data-theme] .tvwall-sec{background:var(--bg)}
+.tvwall-sec .wall-glow{background:radial-gradient(ellipse at center,rgba(var(--arc),.12),transparent 60%)}
 </style>
 <script>(function(){try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')}catch(e){}})();</script>
 </head>
@@ -590,6 +607,7 @@ html[data-theme="neon"] .outline,html[data-theme="acid"] .outline{-webkit-text-s
   </div>
 
   <section id="work" class="tvwall-sec">
+    <canvas class="srv" id="srv" aria-hidden="true"></canvas><div class="srv-shade" aria-hidden="true"></div>
     <div class="wrap">
       <div class="sec-head">
         <div class="mask"><p class="eyebrow">Selected work · tune in</p><h2>The TV wall</h2><p class="range mono">4 channels · click a screen to watch</p></div>
@@ -599,59 +617,75 @@ html[data-theme="neon"] .outline,html[data-theme="acid"] .outline{-webkit-text-s
     <div class="wall-stage" id="wallStage">
       <div class="wall-glow" aria-hidden="true"></div>
       <div class="wall" id="wall">
-      <div class="wall-row">
-        <div class="tv ftv tv-port" style="--w:150;--r:-3deg" ><span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
+      <div class="wall-col">
+        <div class="tv ftv tv-port" style="--w:140;--r:-2deg" ><span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
           <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="static" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="dial xs"></span></div></div>
           <span class="tv-feet" aria-hidden="true"></span>
         </div>
-        <div class="tv vtv tv-black" style="--w:236;--r:1deg" data-ch="4">
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/I4CyHnFaREI/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 04</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="4" aria-label="Play BACK TOGETHER?"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span><span class="tape">BACK TOGETHER?</span>
-        </div>
-        <div class="tv ftv tv-wood" style="--w:190;--r:0deg" >
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="rings" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><span class="dial"></span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span>
-        </div>
-        <div class="tv ftv tv-black" style="--w:168;--r:2deg" ><span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="logo" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span>
-        </div>
-      </div>
-      <div class="wall-row">
-        <div class="tv ftv tv-black" style="--w:176;--r:-1deg" >
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="bars" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span>
-        </div>
-        <div class="tv ftv tv-wood" style="--w:330;--r:0deg" >
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="kaleido" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><span class="dial"></span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span>
-        </div>
-        <div class="tv vtv tv-silver" style="--w:250;--r:-1deg" data-ch="3">
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/TMTwot0t9cw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 03</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="3" aria-label="Play THE TACO SHOW 🌮 · Pilot Episode"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span><span class="tape">THE TACO SHOW 🌮</span>
-        </div>
-        <div class="tv ftv tv-silver" style="--w:178;--r:1deg" ><span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="waves" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span>
-        </div>
-      </div>
-      <div class="wall-row">
-        <div class="tv ftv tv-wood" style="--w:236;--r:0deg" >
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="tunnel" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><button type="button" class="dial trip-knob" aria-label="Trip mode knob: change the site colors"></button><span class="sticker">DON'T<br>TOUCH</span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span>
-        </div>
-        <div class="tv vtv tv-silver" style="--w:400;--r:0deg" data-ch="1">
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="assets/twitch-vod-poster.jpg" alt="" loading="lazy"><span class="osd ch">CH 01</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="1" aria-label="Play Twitch VOD → YouTube edit"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span><span class="tape">Twitch VOD → YouTube e</span>
-        </div>
-        <div class="tv vtv tv-black" style="--w:318;--r:0deg" data-ch="2">
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/RhcoXRtnoJw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 02</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="2" aria-label="Play THE TACO SHOW · American Edition"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span><span class="tape">THE TACO SHOW</span>
-        </div>
-        <div class="tv ftv tv-port" style="--w:160;--r:-2deg" >
+        <div class="tv ftv tv-port" style="--w:160;--r:1deg" >
           <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="rain" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="dial xs"></span></div></div>
           <span class="tv-feet" aria-hidden="true"></span>
         </div>
+        <div class="tv ftv tv-black" style="--w:184;--r:0deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="bars" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="vcr" style="--w:184" aria-hidden="true"><span class="vcr-slot"></span><span class="vcr-lcd">12:00</span><span class="vcr-btns"><b></b><b></b><b></b></span></div>
+        <div class="vcr" style="--w:184" aria-hidden="true"><span class="vcr-slot"></span><span class="vcr-lcd">PLAY</span><span class="vcr-btns"><b></b><b></b><b></b></span></div>
+      </div>
+      <div class="wall-col">
+        <div class="tv ftv tv-black" style="--w:170;--r:2deg" ><span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="logo" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="tv vtv tv-black" style="--w:226;--r:0deg" data-ch="4">
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/I4CyHnFaREI/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 04</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="4" aria-label="Play BACK TOGETHER?"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span><span class="tape">BACK TOGETHER?</span>
+        </div>
+        <div class="tv ftv tv-wood" style="--w:230;--r:0deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="tunnel" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><button type="button" class="dial trip-knob" aria-label="Trip mode knob: change the site colors"></button><span class="sticker">DON'T<br>TOUCH</span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="wall-col">
+        <div class="tv ftv tv-wood" style="--w:200;--r:-1deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="rings" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><span class="dial"></span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="tv ftv tv-wood" style="--w:320;--r:0deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="kaleido" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><span class="dial"></span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="tv vtv tv-silver" style="--w:384;--r:0deg" data-ch="1">
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="assets/twitch-vod-poster.jpg" alt="" loading="lazy"><span class="osd ch">CH 01</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="1" aria-label="Play Twitch VOD → YouTube edit"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span><span class="tape">Twitch VOD → YouTube e</span>
+        </div>
+      </div>
+      <div class="wall-col">
+        <div class="tv ftv tv-silver" style="--w:176;--r:1deg" ><span class="tv-ant" aria-hidden="true"><i></i><i></i></span>
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="waves" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="tv vtv tv-silver" style="--w:246;--r:-1deg" data-ch="3">
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/TMTwot0t9cw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 03</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="3" aria-label="Play THE TACO SHOW 🌮 · Pilot Episode"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span><span class="tape">THE TACO SHOW 🌮</span>
+        </div>
+        <div class="tv vtv tv-black" style="--w:300;--r:0deg" data-ch="2">
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/RhcoXRtnoJw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 02</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="2" aria-label="Play THE TACO SHOW · American Edition"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span><span class="tape">THE TACO SHOW</span>
+        </div>
+      </div>
+      <div class="wall-col">
+        <div class="tv ftv tv-port" style="--w:138;--r:2deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="static" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="tv ftv tv-black" style="--w:196;--r:-1deg" >
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="plasma" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
+        </div>
+        <div class="vcr" style="--w:196" aria-hidden="true"><span class="vcr-slot"></span><span class="vcr-lcd">REC</span><span class="vcr-btns"><b></b><b></b><b></b></span></div>
+        <div class="vcr" style="--w:196" aria-hidden="true"><span class="vcr-slot"></span><span class="vcr-lcd">--:--</span><span class="vcr-btns"><b></b><b></b><b></b></span></div>
       </div>
       </div>
       <div class="wall-floor" aria-hidden="true"></div>
@@ -1275,7 +1309,7 @@ document.querySelectorAll('.yt-face').forEach(function(b){b.addEventListener('cl
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // ---------- scale wall to fit ----------
   var wall=document.getElementById('wall'),stage=document.getElementById('wallStage');
-  function fit(){if(!wall)return;var avail=Math.min(innerWidth-16,1240),sc=Math.min(1,avail/1180);wall.style.transform='scale('+sc+')';wall.style.marginBottom=(-(1-sc)*wall.offsetHeight)+'px'}
+  function fit(){if(!wall)return;var avail=Math.min(innerWidth-16,1340),sc=Math.min(1,avail/1300);wall.style.transform='scale('+sc+')';wall.style.marginBottom=(-(1-sc)*wall.offsetHeight)+'px'}
   window.addEventListener('resize',fit);fit();setTimeout(fit,400);
 
   // ---------- filler TV patterns ----------
@@ -1364,6 +1398,75 @@ document.querySelectorAll('.yt-face').forEach(function(b){b.addEventListener('cl
   function next(e){var r=e&&e.currentTarget.getBoundingClientRect();setTheme((ti+1)%THEMES.length,r?r.left+r.width/2:innerWidth/2,r?r.top+r.height/2:innerHeight/2)}
   var tb=document.getElementById('tripBtn');if(tb)tb.addEventListener('click',next);
   document.querySelectorAll('.trip-knob').forEach(function(k){k.addEventListener('click',function(e){e.stopPropagation();next(e)})});
+})();
+
+// ---------- dark server room behind the TV wall ----------
+(function(){
+  var c=document.getElementById('srv');if(!c)return;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var g=c.getContext('2d'),DPR=Math.min(devicePixelRatio||1,2),W,H,bgc=document.createElement('canvas'),leds=[],faces=[],visible=true;
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  function lerp(a,b,t){return a+(b-a)*t}
+  function quadPt(q,u,v){var x1=lerp(q[0][0],q[1][0],u),y1=lerp(q[0][1],q[1][1],u),x2=lerp(q[3][0],q[2][0],u),y2=lerp(q[3][1],q[2][1],u);return [lerp(x1,x2,v),lerp(y1,y2,v)]}
+  function poly(ctx,pts){ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);for(var i=1;i<pts.length;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.closePath()}
+  var COLS=['0,255,90','0,255,90','0,255,90','80,170,255','255,170,40','255,60,60'];
+  function build(){
+    var r=c.getBoundingClientRect();W=Math.max(1,r.width);H=Math.max(1,r.height);
+    c.width=W*DPR;c.height=H*DPR;g.setTransform(DPR,0,0,DPR,0,0);
+    bgc.width=c.width;bgc.height=c.height;var b=bgc.getContext('2d');b.setTransform(DPR,0,0,DPR,0,0);
+    // room geometry: back wall + two side rack rows converging to a vanishing point
+    var bx0=W*.34,bx1=W*.66,by0=H*.2,by1=H*.6;
+    b.fillStyle='#030605';b.fillRect(0,0,W,H);
+    // ceiling
+    var ceil=[[0,0],[W,0],[bx1,by0],[bx0,by0]];poly(b,ceil);var cg=b.createLinearGradient(0,0,0,by0);cg.addColorStop(0,'#05090a');cg.addColorStop(1,'#0b1412');b.fillStyle=cg;b.fill();
+    // floor
+    var flo=[[bx0,by1],[bx1,by1],[W,H],[0,H]];poly(b,flo);var fg=b.createLinearGradient(0,by1,0,H);fg.addColorStop(0,'#0a1311');fg.addColorStop(1,'#020403');b.fillStyle=fg;b.fill();
+    // floor tiles
+    b.strokeStyle='rgba(120,255,170,.07)';b.lineWidth=1;
+    for(var i=0;i<=12;i++){var t=i/12;b.beginPath();b.moveTo(lerp(bx0,bx1,t),by1);b.lineTo(lerp(-W*.4,W*1.4,t),H);b.stroke()}
+    for(var k=1;k<=9;k++){var t=Math.pow(k/9,2.2),y=lerp(by1,H,t),xl=lerp(bx0,-W*.4,t),xr=lerp(bx1,W*1.4,t);b.beginPath();b.moveTo(xl,y);b.lineTo(xr,y);b.stroke()}
+    // ceiling cable trays + light strips
+    for(var j=0;j<3;j++){var u=.3+j*.2;b.strokeStyle='rgba(160,200,190,.12)';b.lineWidth=2;b.beginPath();b.moveTo(lerp(-W*.2,W*1.2,u),0);b.lineTo(lerp(bx0,bx1,u),by0);b.stroke()}
+    for(var k=0;k<5;k++){var t0=Math.pow(k/5,1.6),t1=Math.pow((k+.45)/5,1.6);
+      var p=[[lerp(W*.42,bx0+(bx1-bx0)*.44,t0),lerp(0,by0,t0)],[lerp(W*.58,bx0+(bx1-bx0)*.56,t0),lerp(0,by0,t0)],[lerp(W*.58,bx0+(bx1-bx0)*.56,t1),lerp(0,by0,t1)],[lerp(W*.42,bx0+(bx1-bx0)*.44,t1),lerp(0,by0,t1)]];
+      poly(b,p);b.fillStyle='rgba(200,255,225,'+(.22-k*.03)+')';b.fill()}
+    // rack faces
+    faces=[];
+    var nb=6;for(var i=0;i<nb;i++){var x0=lerp(bx0,bx1,i/nb)+2,x1=lerp(bx0,bx1,(i+1)/nb)-2;faces.push([[x0,by0+4],[x1,by0+4],[x1,by1],[x0,by1]])}
+    function side(left){var n=6,ex=left?-W*.08:W*1.08,fx=left?bx0:bx1;
+      for(var i=0;i<n;i++){var t0=Math.pow(i/n,1.7),t1=Math.pow((i+.9)/n,1.7);
+        var xa=lerp(ex,fx,t0),xb=lerp(ex,fx,t1),ya0=lerp(-H*.08,by0,t0),ya1=lerp(H*1.02,by1,t0),yb0=lerp(-H*.08,by0,t1),yb1=lerp(H*1.02,by1,t1);
+        faces.push(left?[[xa,ya0],[xb,yb0],[xb,yb1],[xa,ya1]]:[[xb,yb0],[xa,ya0],[xa,ya1],[xb,yb1]])}}
+    side(true);side(false);
+    leds=[];
+    faces.forEach(function(q,fi){
+      poly(b,q);var rg=b.createLinearGradient(q[0][0],q[0][1],q[3][0],q[3][1]);rg.addColorStop(0,'#101615');rg.addColorStop(1,'#070a09');b.fillStyle=rg;b.fill();
+      b.strokeStyle='rgba(140,200,180,.18)';b.lineWidth=1.2;b.stroke();
+      var U=18;
+      for(var u=1;u<U;u++){var a=quadPt(q,0,u/U),z=quadPt(q,1,u/U);b.strokeStyle='rgba(0,0,0,.6)';b.beginPath();b.moveTo(a[0],a[1]);b.lineTo(z[0],z[1]);b.stroke();
+        if(u%3===0){var a2=quadPt(q,.06,(u-.5)/U),z2=quadPt(q,.94,(u-.5)/U);b.strokeStyle='rgba(120,160,150,.10)';b.beginPath();b.moveTo(a2[0],a2[1]);b.lineTo(z2[0],z2[1]);b.stroke()}
+        var n=Math.random()<.85?Math.floor(rnd(1,5)):0;
+        for(var m=0;m<n;m++)leds.push({f:fi,u:rnd(.08,.5),v:(u-.5)/U,c:COLS[Math.floor(Math.random()*COLS.length)],per:rnd(300,2600),ph:rnd(0,6.28),steady:Math.random()<.35})}
+    });
+    // haze
+    var hz=b.createRadialGradient(W/2,H*.45,0,W/2,H*.45,W*.6);hz.addColorStop(0,'rgba(120,255,180,.07)');hz.addColorStop(1,'rgba(0,0,0,0)');b.fillStyle=hz;b.fillRect(0,0,W,H);
+    var fog=b.createLinearGradient(0,H*.55,0,H);fog.addColorStop(0,'rgba(80,140,120,0)');fog.addColorStop(.4,'rgba(80,140,120,.05)');fog.addColorStop(1,'rgba(0,0,0,0)');b.fillStyle=fog;b.fillRect(0,0,W,H);
+    draw(0);
+  }
+  function draw(t){
+    g.clearRect(0,0,W,H);g.drawImage(bgc,0,0,W,H);
+    for(var i=0;i<leds.length;i++){var L=leds[i],q=faces[L.f],p=quadPt(q,L.u,L.v);
+      var on=L.steady?1:(Math.sin(t/L.per*6.28+L.ph)>-.2?1:.15);
+      var sz=Math.max(1,Math.abs(q[1][0]-q[0][0])*.018);
+      g.fillStyle='rgba('+L.c+','+(.10*on).toFixed(2)+')';g.fillRect(p[0]-sz*2.5,p[1]-sz*2.5,sz*5,sz*5);
+      g.fillStyle='rgba('+L.c+','+(.9*on).toFixed(2)+')';g.fillRect(p[0]-sz/2,p[1]-sz/2,sz,sz)}
+    // floor reflection glow of the TV wall area + subtle light flicker
+    var fl=.06+.02*Math.sin(t/900);var rg=g.createRadialGradient(W/2,H*.78,0,W/2,H*.78,W*.35);rg.addColorStop(0,'rgba(0,255,120,'+fl.toFixed(3)+')');rg.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=rg;g.fillRect(0,H*.5,W,H*.5);
+  }
+  var last=0;function loop(t){if(visible&&t-last>60){last=t;draw(t)}requestAnimationFrame(loop)}
+  build();window.addEventListener('resize',function(){clearTimeout(c._t);c._t=setTimeout(build,150)});setTimeout(build,600);
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(c);
+  if(!reduce)requestAnimationFrame(loop);
 })();
 
 </script>
