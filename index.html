@@ -530,6 +530,9 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
 .wall.wall-m .tv{margin-top:0}
 .wall.wall-m .vtv:hover,.wall.wall-m .vtv:focus-within{transform:none}
 .wall.wall-m .ftv .sticker{font-size:5em}
+
+.work-sub{margin:18px 0 0;font-size:clamp(17px,2vw,21px);line-height:1.5;color:var(--muted);max-width:620px}
+.tvwall-sec .sec-head h2{font-size:clamp(52px,8vw,110px)}
 </style>
 <script>(function(){try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-on')}catch(e){}})();</script>
 </head>
@@ -552,7 +555,7 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
           <span class="tvm-ctrls"><button type="button" class="tvm-btn" id="tvmPrev" aria-label="Previous channel">CH ▼</button><button type="button" class="tvm-btn" id="tvmNext" aria-label="Next channel">CH ▲</button><button type="button" class="tvm-btn power" id="tvmClose" aria-label="Turn off the TV and close">⏻ OFF</button></span><span class="led on"></span></div></div>
       <span class="tv-feet" aria-hidden="true"></span>
     </div>
-    <div class="tvm-info"><p class="meta" id="tvmMeta"></p><h3 id="tvmTitle"></h3><p id="tvmDesc"></p><a class="yt-link mono" id="tvmLink" href="#">Watch on YouTube ↗</a></div>
+    <div class="tvm-info"><p class="meta">Edited by SpeedyGonzalo</p><a class="yt-link mono" id="tvmLink" href="#">Watch on YouTube ↗</a></div>
   </div>
 </div>
 <div class="trip-fx" aria-hidden="true"><i></i><i></i></div>
@@ -624,7 +627,7 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
     <canvas class="srv" id="srv" aria-hidden="true"></canvas><div class="srv-shade" aria-hidden="true"></div>
     <div class="wrap">
       <div class="sec-head">
-        <div class="mask"><p class="eyebrow">Selected work · tune in</p><h2>The TV wall</h2><p class="range mono">4 channels · click a screen to watch</p></div>
+        <div class="mask"><h2>My work</h2><p class="work-sub">Every clip on these screens is mine. I edited all of it.</p></div>
         <a href="https://www.youtube.com/@Speedy10932" class="btn btn-ghost magnetic">Full channel on YouTube <span class="arr">↗</span></a>
       </div>
     </div>
@@ -653,8 +656,8 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
           <span class="tv-feet" aria-hidden="true"></span>
         </div>
         <div class="tv vtv tv-black" style="--w:226;--r:0deg" data-ch="4">
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/I4CyHnFaREI/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 04</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="4" aria-label="Play BACK TOGETHER?"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span><span class="tape">BACK TOGETHER?</span>
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/I4CyHnFaREI/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/I4CyHnFaREI/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 04</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="4" aria-label="Play edit 4"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
         </div>
         <div class="tv ftv tv-wood" style="--w:230;--r:0deg" >
           <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><canvas class="fx" data-p="tunnel" width="128" height="96"></canvas><button type="button" class="tv-hit fx-hit" aria-label="Change the channel on this TV"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel side"><button type="button" class="dial trip-knob" aria-label="Trip mode knob: change the site colors"></button><span class="sticker">DON'T<br>TOUCH</span><span class="dial sm"></span><span class="grille"></span><span class="brand">SPEEDY</span></div></div>
@@ -671,8 +674,8 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
           <span class="tv-feet" aria-hidden="true"></span>
         </div>
         <div class="tv vtv tv-silver" style="--w:384;--r:0deg" data-ch="1">
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="assets/twitch-vod-poster.jpg" alt="" loading="lazy"><span class="osd ch">CH 01</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="1" aria-label="Play Twitch VOD → YouTube edit"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span><span class="tape">Twitch VOD → YouTube e</span>
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="assets/twitch-vod-poster.jpg" alt="" loading="lazy"><span class="osd ch">CH 01</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="1" aria-label="Play edit 1"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
         </div>
       </div>
       <div class="wall-col">
@@ -681,12 +684,12 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
           <span class="tv-feet" aria-hidden="true"></span>
         </div>
         <div class="tv vtv tv-silver" style="--w:246;--r:-1deg" data-ch="3">
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/TMTwot0t9cw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 03</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="3" aria-label="Play THE TACO SHOW 🌮 · Pilot Episode"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span><span class="tape">THE TACO SHOW 🌮</span>
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/TMTwot0t9cw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/TMTwot0t9cw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 03</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="3" aria-label="Play edit 3"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="grille"></span><span class="btns"><b></b><b></b><b></b><b></b></span><span class="led"></span><span class="dial xs"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
         </div>
         <div class="tv vtv tv-black" style="--w:300;--r:0deg" data-ch="2">
-          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/RhcoXRtnoJw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 02</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="2" aria-label="Play THE TACO SHOW · American Edition"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
-          <span class="tv-feet" aria-hidden="true"></span><span class="tape">THE TACO SHOW</span>
+          <div class="tv-body"><div class="tv-bezel"><div class="tv-screen"><img src="https://i.ytimg.com/vi/RhcoXRtnoJw/maxresdefault.jpg" onload="if(this.naturalWidth<=120&&this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/RhcoXRtnoJw/hqdefault.jpg'" alt="" loading="lazy"><span class="osd ch">CH 02</span><span class="osd play">▶ PLAY</span><button type="button" class="tv-hit" data-ch="2" aria-label="Play edit 2"></button><span class="tv-scan"></span><span class="tv-glass"></span></div></div><div class="tv-panel bottom"><span class="brand">CODE·VISION</span><span class="btns"><b></b><b></b><b></b></span><span class="led"></span></div></div>
+          <span class="tv-feet" aria-hidden="true"></span>
         </div>
       </div>
       <div class="wall-col">
@@ -703,14 +706,6 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
       </div>
       </div>
       <div class="wall-floor" aria-hidden="true"></div>
-    </div>
-    <div class="wrap">
-      <ol class="guide mono" aria-label="Channel guide">
-        <li><button type="button" class="guide-btn" data-ch="1"><span class="g-ch">CH 01</span><span class="g-t">Twitch VOD → YouTube edit</span><span class="g-m">Showing off my editing skills to U, I get hired</span></button></li>
-        <li><button type="button" class="guide-btn" data-ch="2"><span class="g-ch">CH 02</span><span class="g-t">THE TACO SHOW · American Edition</span><span class="g-m">Series · Episode 2</span></button></li>
-        <li><button type="button" class="guide-btn" data-ch="3"><span class="g-ch">CH 03</span><span class="g-t">THE TACO SHOW 🌮 · Pilot Episode</span><span class="g-m">Series · Pilot</span></button></li>
-        <li><button type="button" class="guide-btn" data-ch="4"><span class="g-ch">CH 04</span><span class="g-t">BACK TOGETHER?</span><span class="g-m">Channel upload</span></button></li>
-      </ol>
     </div>
   </section>
 
@@ -1544,9 +1539,8 @@ document.querySelectorAll('.yt-face').forEach(function(b){b.addEventListener('cl
     burst.set(c,performance.now()+280);c.setAttribute('data-p',PATTERNS[(cur+1)%PATTERNS.length]);if(reduce)draw(c,0)})});
 
   // ---------- TV player modal ----------
-  var CH=[].map.call(document.querySelectorAll('.guide-btn'),function(b){return +b.getAttribute('data-ch')});
+  var CH=[].map.call(document.querySelectorAll('.vtv'),function(b){return +b.getAttribute('data-ch')}).sort(function(a,b){return a-b});
   var DATA={};
-  document.querySelectorAll('.guide-btn').forEach(function(b){DATA[b.getAttribute('data-ch')]={title:b.querySelector('.g-t').textContent,meta:b.querySelector('.g-m').textContent}});
   var SRC={1:{mp4:'assets/twitch-vod-edit.mp4',yt:'gIB73_PZ8x0',desc:'A horror game stream cut into a tight 2½-minute video: custom meme intro, dead air gone, reaction zooms and SFX on every jump scare.'},
     2:{yt:'RhcoXRtnoJw',desc:'Episode two of my own comedy series. Longer-form editing that keeps a full story moving for almost 8 minutes.'},
     3:{yt:'TMTwot0t9cw',desc:'The pilot of The Taco Show, where the series and my editing style started.'},
@@ -1556,21 +1550,20 @@ document.querySelectorAll('.yt-face').forEach(function(b){b.addEventListener('cl
   function size(){var w=Math.min(880,innerWidth*.94,(innerHeight-260)*1.12);set.style.setProperty('--w',Math.max(300,Math.round(w)))}
   function noise(on){if(!on){stc.classList.remove('on');cancelAnimationFrame(staticRaf);return}stc.classList.add('on');var g=stc.getContext('2d');
     (function f(){var im=g.createImageData(160,120),d=im.data;for(var i=0;i<d.length;i+=4){var v=Math.random()*255;d[i]=d[i+1]=d[i+2]=v;d[i+3]=255}g.putImageData(im,0,0);staticRaf=requestAnimationFrame(f)})()}
-  function load(ch){cur=ch;var s=SRC[ch],d=DATA[ch];media.innerHTML='';
+  function load(ch){cur=ch;var s=SRC[ch];media.innerHTML='';
     osd.textContent='CH '+(ch<10?'0':'')+ch;
-    document.getElementById('tvmMeta').textContent=d.meta;document.getElementById('tvmTitle').textContent=d.title;document.getElementById('tvmDesc').textContent=s.desc;
     var link=document.getElementById('tvmLink');link.href='https://www.youtube.com/watch?v='+s.yt;
     noise(true);
     setTimeout(function(){
       if(s.mp4){var v=document.createElement('video');v.src=s.mp4;v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute('playsinline','');media.appendChild(v);try{v.play().catch(function(){})}catch(e){}}
-      else{var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+s.yt+'?autoplay=1&rel=0&modestbranding=1';f.title=d.title;f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;media.appendChild(f)}
+      else{var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+s.yt+'?autoplay=1&rel=0&modestbranding=1';f.title='Edit '+ch;f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;media.appendChild(f)}
       setTimeout(function(){noise(false)},reduce?0:220)},reduce?0:320)}
   function open(ch,from){lastFocus=from||document.activeElement;size();tvm.hidden=false;document.body.style.overflow='hidden';
     set.classList.remove('tvm-screen-off');void set.offsetWidth;set.classList.add('tvm-screen-on');load(ch);setTimeout(function(){document.getElementById('tvmClose').focus()},50)}
   function close(){set.classList.remove('tvm-screen-on');set.classList.add('tvm-screen-off');noise(false);
     setTimeout(function(){media.innerHTML='';tvm.hidden=true;set.classList.remove('tvm-screen-off');document.body.style.overflow='';if(lastFocus)lastFocus.focus()},reduce?0:480)}
   function step(dir){var i=CH.indexOf(cur);load(CH[(i+dir+CH.length)%CH.length])}
-  document.querySelectorAll('.vtv .tv-hit, .guide-btn').forEach(function(b){b.addEventListener('click',function(){open(+b.getAttribute('data-ch'),b)})});
+  document.querySelectorAll('.vtv .tv-hit').forEach(function(b){b.addEventListener('click',function(){open(+b.getAttribute('data-ch'),b)})});
   document.getElementById('tvmClose').addEventListener('click',close);
   document.getElementById('tvmNext').addEventListener('click',function(){step(1)});
   document.getElementById('tvmPrev').addEventListener('click',function(){step(-1)});
