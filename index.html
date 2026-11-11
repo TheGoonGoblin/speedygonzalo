@@ -966,7 +966,7 @@ canvas.code-drips{position:fixed;inset:0;width:100vw;height:100vh;z-index:34;poi
 
   // ---- randomized intro scenes + colors ----
   var SCENES=['fight','standoff','pills','reel','warp','bear','dna','rocket','planet','galaxy','controller'];
-  var WEIGHT={fight:1,standoff:1,pills:1,reel:1,warp:1,bear:4,dna:4,rocket:4,planet:4,galaxy:4,controller:4},lastScene=null;
+  var WEIGHT={fight:6,standoff:6,bear:7,rocket:3,planet:2,controller:3,pills:1.5,reel:1.5,warp:1.5,galaxy:.5,dna:.5},lastScene=null;
   try{lastScene=localStorage.getItem('sg_last_scene')}catch(e){}
   var pool=SCENES.filter(function(x){return x!==lastScene}),tot=pool.reduce(function(a,x){return a+WEIGHT[x]},0),roll=Math.random()*tot,scene=pool[0];
   for(var wi=0;wi<pool.length;wi++){roll-=WEIGHT[pool[wi]];if(roll<=0){scene=pool[wi];break}}
